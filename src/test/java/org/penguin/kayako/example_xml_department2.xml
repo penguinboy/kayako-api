@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<department>
+<id><![CDATA[2]]></id>
+<title><![CDATA[Sales]]></title>
+<type><![CDATA[public]]></type>
+<module><![CDATA[tickets]]></module>
+<app><![CDATA[tickets]]></app>
+<displayorder><![CDATA[30]]></displayorder>
+<parentdepartmentid><![CDATA[0]]></parentdepartmentid>
+<uservisibilitycustom><![CDATA[1]]></uservisibilitycustom>
+<usergroups>
+</usergroups>
+</department>
