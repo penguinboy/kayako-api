@@ -11,17 +11,17 @@ import org.junit.Test;
 import com.google.common.io.CharStreams;
 
 public class DepartmentTests {
-
+    
     @Test
     public void testXmlParsingDepartment() throws Exception {
         // arrange
         String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department.xml")));
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper();
-
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
+        
         // act
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
-
+        
         // assert
         Assert.assertNotNull(department);
         Assert.assertEquals(2, department.getId());
@@ -33,45 +33,45 @@ public class DepartmentTests {
         Assert.assertEquals(0, department.getParentDepartmentId());
         Assert.assertEquals(false, department.getUserVisibilityCustom());
     }
-
+    
     @Test
     public void testXmlParsingDepartmentWithNoUserGroups() throws Exception {
         // arrange
         String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department2.xml")));
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper();
-
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
+        
         // act
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
-
+        
         // assert
         Assert.assertEquals(0, department.getUserGroups().size());
     }
-
+    
     @Test
     public void testXmlParsingDepartmentWithUserVisibilityCustom() throws Exception {
         // arrange
         String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department2.xml")));
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper();
-
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
+        
         // act
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
-
+        
         // assert
         Assert.assertEquals(true, department.getUserVisibilityCustom());
     }
-
+    
     @Test
     public void testXmlParsingDepartmentWithManyUserGroups() throws Exception {
         // arrange
         String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department3.xml")));
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper();
-
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
+        
         // act
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
-
+        
         // assert
         Assert.assertEquals(3, department.getUserGroups().size());
         Assert.assertTrue(1234 == department.getUserGroups().get(1));
