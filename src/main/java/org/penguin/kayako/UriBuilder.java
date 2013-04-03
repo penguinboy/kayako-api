@@ -11,6 +11,12 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.ImmutableMap;
 
+/**
+ * An builder for URLs. Based on the javax.wx.rs UriBuilder.
+ * 
+ * @author raynerw
+ * 
+ */
 class UriBuilder {
     private final static String UTF8 = "UTF-8";
     
@@ -34,6 +40,18 @@ class UriBuilder {
         this.queryParameters = ImmutableMap.<String, String> copyOf(queryParameters);
     }
     
+    /**
+     * Add a segment to the path portion of the URI. Returns a new instance of the {@link UriBuilder}, leaving the old
+     * instance untouched. This path will be URL encoded, so don't try to encode it yourself or attempt to append
+     * multiple path segments in one call (eg. /path/to/thing). Leading and trailing /'s are not needed, as they will be
+     * trimmed.
+     * 
+     * @param pathSegment
+     *            The path segment you want to add onto the URI you are building.
+     * @return A new instance of {@link UriBuilder} with the changed path.
+     * @throws UriBuilderException
+     *             A wrapper for any exceptions that occur building the URI.
+     */
     public UriBuilder path(String pathSegment) throws UriBuilderException {
         try {
             String newPath = path + "/" + encode(trimSlashes(pathSegment), UTF8);
@@ -43,6 +61,17 @@ class UriBuilder {
         }
     }
     
+    /**
+     * Add a segment to the query parameter path. This is before the query key-value parameters, but after the path
+     * portion of the URI.
+     * 
+     * @param pathSegment
+     *            The query path segment you wish to add. Leading/trailing slashes (/) will be trimmed. Everything else
+     *            will be URL encoded.
+     * @return A new instance of {@link UriBuilder} with the changed query path.
+     * @throws UriBuilderException
+     *             A wrapper for any exceptions that occur building the URI.
+     */
     public UriBuilder queryPath(String pathSegment) throws UriBuilderException {
         try {
             String newQueryPath = queryPath + "/" + encode(trimSlashes(pathSegment), UTF8);
@@ -52,11 +81,28 @@ class UriBuilder {
         }
     }
     
+    /**
+     * Add a query parameter to the URI.
+     * 
+     * @param key
+     *            The key of the pair. This will be URL encoded.
+     * @param value
+     *            The value of the pair. This will be URL encoded.
+     * @return A new instance of {@link UriBuilder} with the additional query parameters.
+     */
     public UriBuilder queryParam(String key, String value) {
         return new UriBuilder(host, path, queryPath,
                 ImmutableMap.<String, String> builder().putAll(queryParameters).put(key, value).build());
     }
     
+    /**
+     * Get the path segment of this URI. This actually includes everything after the host section. Query path and params
+     * are incldued.
+     * 
+     * @return A string representing the path of the URI
+     * @throws URISyntaxException
+     *             If the URI built so far is invalid.
+     */
     public String getPath() throws URISyntaxException {
         try {
             String basePath = path + (!isNullOrEmpty(queryPath) || queryParameters.size() > 0 ? "?" + queryPath : "");
@@ -75,6 +121,11 @@ class UriBuilder {
         }
     }
     
+    /**
+     * Returns a new {@link URL} instance with the URI you are building.
+     * 
+     * @return A new {@link URL} instance with the scheme, host and path you've built.
+     */
     public URL toURL() {
         try {
             return new URL(scheme, host, getPath());

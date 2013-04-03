@@ -9,6 +9,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.penguin.kayako.adapters.UnixDateAdapter;
 
+/**
+ * An object that represent kayako notes. These are currently returned in {@link BasicTicket} instances, but could
+ * potentially be requested individually (not implemented yet).
+ * 
+ * @author raynerw
+ * 
+ */
 @XmlRootElement(name = "note")
 public class Note {
     @XmlAttribute
