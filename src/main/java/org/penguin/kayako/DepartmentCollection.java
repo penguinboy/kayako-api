@@ -13,8 +13,4 @@ public class DepartmentCollection {
     protected List<Department> getDepartments() {
         return departments;
     }
-    
-    protected void setDepartments(List<Department> departments) {
-        this.departments = departments;
-    }
 }

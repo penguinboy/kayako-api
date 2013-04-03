@@ -1,6 +1,5 @@
 package org.penguin.kayako;
 
-
 public class KayakoClient {
     private final String apiKey;
     private final String apiSecret;
@@ -14,6 +13,10 @@ public class KayakoClient {
     
     public DepartmentConnector departments() {
         return new DepartmentConnector(this);
+    }
+    
+    public TicketConnector tickets() {
+        return new TicketConnector(this);
     }
     
     protected String getApiKey() {
