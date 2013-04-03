@@ -74,11 +74,26 @@ class UriBuilder {
      */
     public UriBuilder queryPath(String pathSegment) throws UriBuilderException {
         try {
-            String newQueryPath = queryPath + "/" + encode(trimSlashes(pathSegment), UTF8);
-            return new UriBuilder(host, path, newQueryPath, queryParameters);
+            return queryPathUnescaped(encode(trimSlashes(pathSegment), UTF8));
         } catch (UnsupportedEncodingException e) {
             throw new UriBuilderException(e);
         }
+    }
+    
+    /**
+     * Add a segment to the query parameter path. This is before the query key-value parameters, but after the path
+     * portion of the URI.
+     * 
+     * @param pathSegment
+     *            The query path segment you wish to add. Leading/trailing slashes (/) will be trimmed. This will not be
+     *            URL encoded.
+     * @return A new instance of {@link UriBuilder} with the changed query path.
+     * @throws UriBuilderException
+     *             A wrapper for any exceptions that occur building the URI.
+     */
+    public UriBuilder queryPathUnescaped(String pathSegment) throws UriBuilderException {
+        String newQueryPath = queryPath + "/" + trimSlashes(pathSegment);
+        return new UriBuilder(host, path, newQueryPath, queryParameters);
     }
     
     /**

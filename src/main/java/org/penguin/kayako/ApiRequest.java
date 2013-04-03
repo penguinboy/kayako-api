@@ -49,6 +49,10 @@ public class ApiRequest {
         return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPath(path));
     }
     
+    public ApiRequest withPathRaw(String path) {
+        return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPathUnescaped(path));
+    }
+    
     public ApiResponse get() throws ApiRequestException {
         try {
             UriBuilder uriBuilder = uri.queryParam("apikey", apiKey)

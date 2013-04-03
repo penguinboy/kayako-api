@@ -17,6 +17,13 @@ Department d = client.departments().get(5);
 // Fetch the open tickets in our department
 List<BasicTicket> tickets = client.tickets().forDepartment(5);
 
+// Be a little more specific with your request
+List<BasicTicket> filteredTickets = client.tickets().forDepartments(Sets.newHashSet(1, 2, 3), 
+				DepartmentTicketRequest.where()
+					.ticketStatusId(1)
+					.ownerStaffId(9)
+					.userId(7907, 65));
+
 ```
 
 ## Kayako Prerequisites
