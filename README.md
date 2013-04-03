@@ -44,8 +44,9 @@ The build jar will be location in `build/libs/kayako-api.jar`. Go nuts and inclu
 In the future a maven repository will be added.
 
 ## What's done
-API 		| Fetch	| Edit | Delete
------------- | ------------- | ------------
+
+API | Fetch | Edit | Delete
+--- | ----- | ---- | ------
 Department | Yes  | - | -
 Ticket | Partial  | - | -
 CustomField | - | - | -
