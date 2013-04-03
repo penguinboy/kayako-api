@@ -11,6 +11,7 @@ import javax.xml.bind.Unmarshaller;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.penguin.kayako.domain.BasicTicket;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;

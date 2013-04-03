@@ -1,4 +1,4 @@
-package org.penguin.kayako;
+package org.penguin.kayako.domain;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class DepartmentCollection {
     @XmlElement(name = "department")
     private List<Department> departments;
     
-    protected List<Department> getDepartments() {
+    public List<Department> getDepartments() {
         return departments;
     }
 }

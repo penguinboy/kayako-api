@@ -3,7 +3,8 @@ package org.penguin.kayako;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.penguin.kayako.KayakoApp.KayakoAppAdapter;
+import org.penguin.kayako.domain.KayakoApp;
+import org.penguin.kayako.domain.KayakoApp.KayakoAppAdapter;
 
 public class KayakoAppTests {
 

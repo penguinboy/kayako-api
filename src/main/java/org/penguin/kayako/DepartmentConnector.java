@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.penguin.kayako.ApiRequest.ApiRequestException;
 import org.penguin.kayako.ApiResponse.ApiResponseException;
+import org.penguin.kayako.domain.Department;
+import org.penguin.kayako.domain.DepartmentCollection;
 
 public class DepartmentConnector {
     private final KayakoClient client;
     
-    public DepartmentConnector(KayakoClient client) {
+    protected DepartmentConnector(KayakoClient client) {
         this.client = client;
     }
     

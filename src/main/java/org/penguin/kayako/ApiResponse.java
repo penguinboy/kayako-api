@@ -10,13 +10,13 @@ import com.google.common.collect.Lists;
 public class ApiResponse {
     private final String responseContent;
     
-    public ApiResponse(String responseContent) {
+    protected ApiResponse(String responseContent) {
         this.responseContent = responseContent;
         Lists.newArrayList();
     }
     
     @SuppressWarnings("unchecked")
-    public <E> E as(Class<E> returnType) throws ApiResponseException {
+    protected <E> E as(Class<E> returnType) throws ApiResponseException {
         
         try {
             Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(returnType);
@@ -29,7 +29,7 @@ public class ApiResponse {
     public static class ApiResponseException extends Exception {
         private static final long serialVersionUID = 6860338648955294068L;
         
-        public ApiResponseException(String message, Throwable e) {
+        private ApiResponseException(String message, Throwable e) {
             super(message, e);
         }
     }

@@ -1,4 +1,4 @@
-package org.penguin.kayako;
+package org.penguin.kayako.domain;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.penguin.kayako.domain.KayakoAccessibility.KayakoAccessibilityAdapter;
+import org.penguin.kayako.domain.KayakoApp.KayakoAppAdapter;
 
 import com.google.common.collect.Lists;
 

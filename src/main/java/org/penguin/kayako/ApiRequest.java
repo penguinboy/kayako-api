@@ -19,11 +19,11 @@ public class ApiRequest {
     
     private UriBuilder uri;
     
-    public ApiRequest(KayakoClient client) throws ApiRequestException {
+    protected ApiRequest(KayakoClient client) throws ApiRequestException {
         this(client.getApiKey(), client.getApiSecret(), client.getBaseURI());
     }
     
-    public ApiRequest(String apiKey, String apiSecret, UriBuilder baseURI) throws ApiRequestException {
+    protected ApiRequest(String apiKey, String apiSecret, UriBuilder baseURI) throws ApiRequestException {
         this.apiSecret = apiSecret;
         
         SecureRandom r = new SecureRandom();
@@ -84,7 +84,7 @@ public class ApiRequest {
     }
     
     public static class ApiRequestException extends Exception {
-        public ApiRequestException(Throwable e) {
+        private ApiRequestException(Throwable e) {
             super("An exception occurred attempting to create API request", e);
         }
     }

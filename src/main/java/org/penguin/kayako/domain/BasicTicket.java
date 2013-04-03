@@ -1,4 +1,4 @@
-package org.penguin.kayako;
+package org.penguin.kayako.domain;
 
 import java.util.Date;
 import java.util.List;

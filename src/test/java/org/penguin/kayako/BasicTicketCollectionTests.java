@@ -7,6 +7,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.penguin.kayako.domain.BasicTicketCollection;
 
 import com.google.common.io.CharStreams;
 

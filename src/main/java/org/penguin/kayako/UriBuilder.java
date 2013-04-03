@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.ImmutableMap;
 
-public class UriBuilder {
+class UriBuilder {
     private final static String UTF8 = "UTF-8";
     
     private final String host;
@@ -20,7 +20,7 @@ public class UriBuilder {
     private final String scheme = "http";
     private final ImmutableMap<String, String> queryParameters;
     
-    public UriBuilder(String host) {
+    protected UriBuilder(String host) {
         this.host = host;
         this.path = "";
         this.queryPath = "";

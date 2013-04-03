@@ -7,6 +7,9 @@ import javax.xml.bind.Unmarshaller;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.penguin.kayako.domain.Department;
+import org.penguin.kayako.domain.KayakoAccessibility;
+import org.penguin.kayako.domain.KayakoApp;
 
 import com.google.common.io.CharStreams;
 

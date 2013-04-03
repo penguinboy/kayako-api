@@ -3,7 +3,8 @@ package org.penguin.kayako;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.penguin.kayako.KayakoAccessibility.KayakoAccessibilityAdapter;
+import org.penguin.kayako.domain.KayakoAccessibility;
+import org.penguin.kayako.domain.KayakoAccessibility.KayakoAccessibilityAdapter;
 
 public class KayakoAccessibilityTests {
 
