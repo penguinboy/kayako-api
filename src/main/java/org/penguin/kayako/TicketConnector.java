@@ -81,13 +81,13 @@ public class TicketConnector {
      * 
      * @param departmentIds
      *            A collection of department identifiers.
-     * @param A
-     *            filter object specifying limiting the scope of the request.
+     * @param filter
+     *            A filter object specifying limiting the scope of the request.
      * @return An ordered list of tickets assigned to the departments you specified.
      * @throws ApiResponseException
-     *             A wrapped exception of anything that went wrong when handling the response from kayako.
+     *            A wrapped exception of anything that went wrong when handling the response from kayako.
      * @throws ApiRequestException
-     *             A wrapped exception of anything that went wrong sending the request to kayako.
+     *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<BasicTicket> forDepartments(Iterable<Integer> departmentIds, DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
         return new ApiRequest(client)
