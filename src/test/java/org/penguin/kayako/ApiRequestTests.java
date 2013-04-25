@@ -6,7 +6,8 @@ import org.junit.Test;
 
 public class ApiRequestTests {
     
-    @Test public void testSignatureGeneratesCorrectly() throws Exception {
+    @Test
+    public void testSignatureGeneratesCorrectly() throws Exception {
         // arrange
         String apiSecret = "MDA4YzBiMWMtN2RiOC1hZTY0LTMxODgtMzE1MThjNmU5NDJlYTM1ZTgwY2YtYjA1ZS1jMzQ0LWY5MjktMzQ1ZjliMDA4ODIx";
         
