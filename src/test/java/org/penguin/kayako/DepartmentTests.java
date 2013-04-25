@@ -18,7 +18,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartment() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department.xml")));
+        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -40,7 +40,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithNoUserGroups() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department2.xml")));
+        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department2.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -54,7 +54,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithUserVisibilityCustom() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department2.xml")));
+        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department2.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -68,7 +68,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithManyUserGroups() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_department3.xml")));
+        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department3.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         

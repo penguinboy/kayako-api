@@ -15,7 +15,7 @@ public class BasicTicketCollectionTests {
     @Test
     public void testBasicTicketUnmarshall() throws Exception {
         // arrange
-        String ticketsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basictickets.xml")));
+        String ticketsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basictickets.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicketCollection.class);
         

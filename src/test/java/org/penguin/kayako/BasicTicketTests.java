@@ -21,7 +21,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshalling() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -35,7 +35,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketContentCorrect() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -81,7 +81,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWatcher() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -97,7 +97,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWorkflow() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -113,7 +113,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsNotes() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -127,7 +127,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWatchers() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket2.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket2.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -141,7 +141,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWorkflows() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket2.xml")));
+        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket2.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         

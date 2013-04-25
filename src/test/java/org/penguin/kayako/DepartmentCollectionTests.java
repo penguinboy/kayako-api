@@ -15,7 +15,7 @@ public class DepartmentCollectionTests {
     @Test
     public void testXmlParsingDepartments() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_departments.xml")));
+        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_departments.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(DepartmentCollection.class);
         

@@ -20,7 +20,7 @@ public class NoteTests {
     @Test
     public void testNoteUnmarshall() throws Exception {
         // arrange
-        String noteXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_note.xml")));
+        String noteXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_note.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Note.class);
         
@@ -34,7 +34,7 @@ public class NoteTests {
     @Test
     public void testNoteContentCorrect() throws Exception {
         // arrange
-        String noteXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_note.xml")));
+        String noteXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_note.xml")));
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Note.class);
         
