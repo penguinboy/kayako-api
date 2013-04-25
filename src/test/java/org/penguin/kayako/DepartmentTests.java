@@ -1,24 +1,21 @@
 package org.penguin.kayako;
 
-import java.io.InputStreamReader;
-import java.io.StringReader;
-
-import javax.xml.bind.Unmarshaller;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.KayakoAccessibility;
 import org.penguin.kayako.domain.KayakoApp;
+import org.penguin.kayako.util.ContentLoader;
 
-import com.google.common.io.CharStreams;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 
 public class DepartmentTests {
     
     @Test
     public void testXmlParsingDepartment() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department.xml")));
+        String departmentsXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_department.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -40,7 +37,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithNoUserGroups() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department2.xml")));
+        String departmentsXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_department2.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -54,7 +51,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithUserVisibilityCustom() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department2.xml")));
+        String departmentsXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_department2.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
@@ -68,7 +65,7 @@ public class DepartmentTests {
     @Test
     public void testXmlParsingDepartmentWithManyUserGroups() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_department3.xml")));
+        String departmentsXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_department3.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Department.class);
         
