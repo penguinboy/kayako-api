@@ -4,6 +4,8 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.net.URLEncoder.encode;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
@@ -144,11 +146,26 @@ class UriBuilder {
     public URL toURL() {
         try {
             return new URL(scheme, host, getPath());
-        } catch (Exception e) {
+        } catch (MalformedURLException e) {
+            throw new UriBuilderException(e);
+        } catch (URISyntaxException e) {
             throw new UriBuilderException(e);
         }
     }
-    
+
+    /**
+     * Returns a new {@link URI} instance with the URI you are building.
+     *
+     * @return A new {@link URI} instance with the scheme, host and path you've built.
+     */
+    public URI toURI() {
+        try {
+        return toURL().toURI();
+        } catch (URISyntaxException e) {
+            throw new UriBuilderException(e);
+        }
+    }
+
     private static String trimSlashes(String path) {
         while (path.startsWith("/")) {
             path = path.substring(1);
