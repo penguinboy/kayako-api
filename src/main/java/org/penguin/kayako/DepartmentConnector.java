@@ -2,7 +2,6 @@ package org.penguin.kayako;
 
 import java.util.List;
 
-import org.penguin.kayako.ApiRequest.ApiRequestException;
 import org.penguin.kayako.ApiResponse.ApiResponseException;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.DepartmentCollection;

@@ -6,8 +6,11 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 import sun.misc.BASE64Encoder;
 
@@ -23,6 +26,7 @@ public class ApiRequest {
     private final String signature;
 
     private UriBuilder uri;
+    private HttpParams params;
 
     protected ApiRequest(KayakoClient client) throws ApiRequestException {
         this(client.getApiKey(), client.getApiSecret(), client.getBaseURI());
@@ -40,22 +44,29 @@ public class ApiRequest {
         this.salt = saltBuilder.toString();
         this.signature = generateSignature(apiSecret, salt);
         this.uri = baseURI;
+        this.params = new BasicHttpParams();
     }
 
-    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri) {
+    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri, HttpParams params) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.salt = salt;
         this.signature = signature;
         this.uri = uri;
+        this.params = params;
     }
 
     public ApiRequest withPath(String path) {
-        return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPath(path));
+        return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPath(path), params);
     }
 
     public ApiRequest withPathRaw(String path) {
-        return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPathUnescaped(path));
+        return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPathUnescaped(path), params);
+    }
+
+    public ApiRequest withPostParam(final String name, final Object value) {
+        params.setParameter(name, value);
+        return this;
     }
 
     public ApiResponse get() throws ApiRequestException {
@@ -82,8 +93,22 @@ public class ApiRequest {
         }
     }
 
+    public ApiResponse post() throws ApiRequestException {
+        try {
+            UriBuilder uriBuilder = applySecurityParams(uri);
+            HttpPost post = new HttpPost(uriBuilder.toURI());
+            post.setParams(params);
+            String content = executeRequest(post);
+            return new ApiResponse(content);
+        } catch (IOException e) {
+            throw new ApiRequestException(e);
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException(e);
+        }
+    }
+
     public ApiRequest setSalt(String salt) throws ApiRequestException {
-        return new ApiRequest(apiKey, apiSecret, salt, generateSignature(apiSecret, salt), uri);
+        return new ApiRequest(apiKey, apiSecret, salt, generateSignature(apiSecret, salt), uri, params);
     }
 
     public String getSignature() {
@@ -118,9 +143,4 @@ public class ApiRequest {
                 .queryParam("signature", signature);
     }
 
-    public static class ApiRequestException extends Exception {
-        private ApiRequestException(Throwable e) {
-            super("An exception occurred attempting to create API request", e);
-        }
-    }
 }
