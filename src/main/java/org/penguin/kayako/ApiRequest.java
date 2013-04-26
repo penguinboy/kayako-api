@@ -4,10 +4,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.*;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
@@ -82,18 +79,6 @@ public class ApiRequest {
         }
     }
 
-    public ApiResponse delete() throws ApiRequestException {
-        try {
-            UriBuilder uriBuilder = applySecurityParams(uri);
-            String content = executeRequest(new HttpDelete(uriBuilder.toURI()));
-            return new ApiResponse(content);
-        } catch (ClientProtocolException e) {
-            throw new ApiRequestException(e);
-        } catch (IOException e) {
-            throw new ApiRequestException(e);
-        }
-    }
-
     public ApiResponse post() throws ApiRequestException {
         try {
             UriBuilder uriBuilder = applySecurityParams(uri);
@@ -104,6 +89,32 @@ public class ApiRequest {
         } catch (IOException e) {
             throw new ApiRequestException(e);
         } catch (ApiRequestException e) {
+            throw new ApiRequestException(e);
+        }
+    }
+
+    public ApiResponse put() throws ApiRequestException {
+        try {
+            UriBuilder uriBuilder = applySecurityParams(uri);
+            HttpPut put = new HttpPut(uriBuilder.toURI());
+            put.setParams(params);
+            String content = executeRequest(put);
+            return new ApiResponse(content);
+        } catch (ClientProtocolException e) {
+            throw new ApiRequestException(e);
+        } catch (IOException e) {
+            throw new ApiRequestException(e);
+        }
+    }
+
+    public ApiResponse delete() throws ApiRequestException {
+        try {
+            UriBuilder uriBuilder = applySecurityParams(uri);
+            String content = executeRequest(new HttpDelete(uriBuilder.toURI()));
+            return new ApiResponse(content);
+        } catch (ClientProtocolException e) {
+            throw new ApiRequestException(e);
+        } catch (IOException e) {
             throw new ApiRequestException(e);
         }
     }

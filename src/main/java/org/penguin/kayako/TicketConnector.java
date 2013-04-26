@@ -29,7 +29,7 @@ import sun.plugin.dom.exception.InvalidStateException;
 public class TicketConnector {
     private final KayakoClient client;
     
-    protected TicketConnector(KayakoClient client) {
+    protected TicketConnector(final KayakoClient client) {
         this.client = client;
     }
     
@@ -44,7 +44,7 @@ public class TicketConnector {
      * @throws org.penguin.kayako.exception.ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<BasicTicket> forDepartment(int departmentId) throws ApiResponseException, ApiRequestException {
+    public List<BasicTicket> forDepartment(final int departmentId) throws ApiResponseException, ApiRequestException {
         return forDepartment(departmentId, DepartmentTicketRequest.where());
     }
     
@@ -61,7 +61,7 @@ public class TicketConnector {
      * @throws ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<BasicTicket> forDepartment(int departmentId, DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
+    public List<BasicTicket> forDepartment(final int departmentId, final DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
         return forDepartments(Lists.newArrayList(departmentId), filter);
     }
     
@@ -76,7 +76,7 @@ public class TicketConnector {
      * @throws ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<BasicTicket> forDepartments(Iterable<Integer> departmentIds) throws ApiResponseException, ApiRequestException {
+    public List<BasicTicket> forDepartments(final Iterable<Integer> departmentIds) throws ApiResponseException, ApiRequestException {
         return forDepartments(departmentIds, DepartmentTicketRequest.where());
     }
     
@@ -93,7 +93,7 @@ public class TicketConnector {
      * @throws ApiRequestException
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<BasicTicket> forDepartments(Iterable<Integer> departmentIds, DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
+    public List<BasicTicket> forDepartments(final Iterable<Integer> departmentIds, final DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
         return new ApiRequest(client)
                 .withPath("Tickets")
                 .withPath("Ticket")
@@ -116,7 +116,7 @@ public class TicketConnector {
      * @throws ApiRequestException
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<Ticket> forId(String ticketId) throws ApiResponseException, ApiRequestException {
+    public List<Ticket> forId(final String ticketId) throws ApiResponseException, ApiRequestException {
         return new ApiRequest(client)
                 .withPath("Tickets")
                 .withPath("Ticket")
@@ -135,7 +135,7 @@ public class TicketConnector {
      * @throws ApiRequestException
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<Ticket> createTicket(TicketCreateRequest request) throws ApiRequestException, ApiResponseException {
+    public List<Ticket> createTicket(final TicketCreateRequest request) throws ApiRequestException, ApiResponseException {
         request.validate();
         ApiRequest apiRequest = new ApiRequest(client)
                 .withPath("Tickets")
@@ -171,9 +171,53 @@ public class TicketConnector {
         if (request.getIgnoreAutoresponder() != null && request.getIgnoreAutoresponder()) {
             apiRequest = apiRequest.withPostParam("ignoreautoresponder", 1);
         }
-        return apiRequest.post().as(TicketCollection.class).getTickets();
+        return apiRequest
+                .post()
+                .as(TicketCollection.class)
+                .getTickets();
     }
 
+    public List<Ticket> updateTicket(final String ticketId, final TicketUpdateRequest request) throws ApiRequestException, ApiResponseException {
+        request.validate();
+        ApiRequest apiRequest = new ApiRequest(client)
+                .withPath("Tickets")
+                .withPath("Ticket")
+                .withPathRaw(ticketId);
+        if (request.getSubject() != null) {
+            apiRequest = apiRequest.withPostParam("subject", request.getSubject());
+        }
+        if (request.getFullname() != null) {
+            apiRequest = apiRequest.withPostParam("fullname", request.getFullname());
+        }
+        if (request.getEmail() != null) {
+            apiRequest = apiRequest.withPostParam("email", request.getEmail());
+        }
+        if (request.getDepartmentId() != null) {
+            apiRequest = apiRequest.withPostParam("departmentid", request.getDepartmentId());
+        }
+        if (request.getTicketStatusId() != null) {
+            apiRequest = apiRequest.withPostParam("ticketstatusid", request.getTicketStatusId());
+        }
+        if (request.getTicketPriorityId() != null) {
+            apiRequest = apiRequest.withPostParam("ticketpriorityid", request.getTicketPriorityId());
+        }
+        if (request.getTicketTypeId() != null) {
+            apiRequest = apiRequest.withPostParam("tickettypeid", request.getTicketTypeId());
+        }
+        if (request.getOwnerStaffId() != null) {
+            apiRequest = apiRequest.withPostParam("ownerstaffid", request.getOwnerStaffId());
+        }
+        if (request.getUserId() != null) {
+            apiRequest = apiRequest.withPostParam("userid", request.getUserId());
+        }
+        if (request.getTemplateGroup() != null) {
+            apiRequest = apiRequest.withPostParam("templategroup", request.getTemplateGroup());
+        }
+        return apiRequest
+                .put()
+                .as(TicketCollection.class)
+                .getTickets();
+    }
 
     /**
      * Delete the ticket identified by ticket id.
@@ -266,6 +310,7 @@ public class TicketConnector {
                 return representation;
             }
         }
+
         private String subject;
         private String fullname;
         private String email;
@@ -576,6 +621,182 @@ public class TicketConnector {
 
         private Boolean getIgnoreAutoresponder() {
             return ignoreAutoresponder;
+        }
+    }
+
+    public static class TicketUpdateRequest {
+        private String subject;
+        private String fullname;
+        private String email;
+        private Integer departmentId;
+        private Integer ticketStatusId;
+        private Integer ticketPriorityId;
+        private Integer ticketTypeId;
+        private Integer ownerStaffId;
+        private Integer userId;
+        private String templateGroup;
+
+        private boolean initialized;
+
+        private TicketUpdateRequest() {
+        }
+
+        public static TicketUpdateRequest where() {
+            return new TicketUpdateRequest();
+        }
+
+        /**
+         * Update ticket subject field.
+         *
+         * @param subject new value
+         * @return request instance
+         */
+        public TicketUpdateRequest subject(final String subject) {
+            initialized = true;
+            this.subject = subject;
+            return this;
+        }
+
+        /**
+         * Update full name of ticket creator.
+         *
+         * @param fullname new value
+         * @return request instance
+         */
+        public TicketUpdateRequest fullname(final String fullname) {
+            initialized = true;
+            this.fullname = fullname;
+            return this;
+        }
+
+        /**
+         * Update email address of ticket creator.
+         *
+         * @param email new value
+         * @return request instance
+         */
+        public TicketUpdateRequest email(final String email) {
+            initialized = true;
+            this.email = email;
+            return this;
+        }
+
+        /**
+         * Update department id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest departmentId(final int id) {
+            initialized = true;
+            this.departmentId = id;
+            return this;
+        }
+
+        /**
+         * Update priority id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest ticketPriorityId(final int id) {
+            initialized = true;
+            this.ticketPriorityId = id;
+            return this;
+        }
+
+        /**
+         * Update type id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest ticketTypeId(final int id) {
+            initialized = true;
+            this.ticketTypeId = id;
+            return this;
+        }
+
+        /**
+         * Update owner staff id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest ownerStaffId(final int id) {
+            initialized = true;
+            this.ownerStaffId = id;
+            return this;
+        }
+
+        /**
+         * Update user id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest userId(final int id) {
+            initialized = true;
+            this.userId = id;
+            return this;
+        }
+
+        /**
+         * Update custom template group identifier (ID or Name) for the ticket.
+         *
+         * @param templateGroup new value
+         * @return request instance
+         */
+        public TicketUpdateRequest templateGroup(final String templateGroup) {
+            initialized = true;
+            this.templateGroup = templateGroup;
+            return this;
+        }
+
+        private void validate() throws ApiRequestException {
+            if (!initialized) {
+                throw new ApiRequestException(new InvalidStateException("At lease one field for update should be specified"));
+            }
+        }
+
+        private String getSubject() {
+            return subject;
+        }
+
+        private String getFullname() {
+            return fullname;
+        }
+
+        private String getEmail() {
+            return email;
+        }
+
+        private Integer getDepartmentId() {
+            return departmentId;
+        }
+
+        private Integer getTicketStatusId() {
+            return ticketStatusId;
+        }
+
+        private Integer getTicketPriorityId() {
+            return ticketPriorityId;
+        }
+
+        private Integer getTicketTypeId() {
+            return ticketTypeId;
+        }
+
+        private Integer getOwnerStaffId() {
+            return ownerStaffId;
+        }
+
+        private Integer getUserId() {
+            return userId;
+        }
+
+        private String getTemplateGroup() {
+            return templateGroup;
         }
     }
 }
