@@ -145,9 +145,9 @@ public class TicketConnector {
                 .withPostParam("email", request.getEmail())
                 .withPostParam("contents", request.getContents())
                 .withPostParam("departmentid", request.getDepartmentId())
-                .withPostParam("ticketstatusid", request.getTicketStatusId())
-                .withPostParam("ticketpriorityid", request.getTicketPriorityId())
-                .withPostParam("tickettypeid", request.getTicketTypeId());
+                .withPostParam("ticketstatusid", request.getStatusId())
+                .withPostParam("ticketpriorityid", request.getPriorityId())
+                .withPostParam("tickettypeid", request.getTypeId());
         if (request.getAutoUserId() != null && request.getAutoUserId()) {
             apiRequest = apiRequest.withPostParam("autouserid", 1);
         }
@@ -195,14 +195,14 @@ public class TicketConnector {
         if (request.getDepartmentId() != null) {
             apiRequest = apiRequest.withPostParam("departmentid", request.getDepartmentId());
         }
-        if (request.getTicketStatusId() != null) {
-            apiRequest = apiRequest.withPostParam("ticketstatusid", request.getTicketStatusId());
+        if (request.getStatusId() != null) {
+            apiRequest = apiRequest.withPostParam("ticketstatusid", request.getStatusId());
         }
-        if (request.getTicketPriorityId() != null) {
-            apiRequest = apiRequest.withPostParam("ticketpriorityid", request.getTicketPriorityId());
+        if (request.getPriorityId() != null) {
+            apiRequest = apiRequest.withPostParam("ticketpriorityid", request.getPriorityId());
         }
-        if (request.getTicketTypeId() != null) {
-            apiRequest = apiRequest.withPostParam("tickettypeid", request.getTicketTypeId());
+        if (request.getTypeId() != null) {
+            apiRequest = apiRequest.withPostParam("tickettypeid", request.getTypeId());
         }
         if (request.getOwnerStaffId() != null) {
             apiRequest = apiRequest.withPostParam("ownerstaffid", request.getOwnerStaffId());
@@ -316,9 +316,9 @@ public class TicketConnector {
         private String email;
         private String contents;
         private Integer departmentId;
-        private Integer ticketStatusId;
-        private Integer ticketPriorityId;
-        private Integer ticketTypeId;
+        private Integer statusId;
+        private Integer priorityId;
+        private Integer typeId;
 
         private Boolean autoUserId;
         private Integer userId;
@@ -332,6 +332,24 @@ public class TicketConnector {
         private TicketCreateRequest() {
         }
 
+        private TicketCreateRequest(TicketCreateRequest request) {
+            this.subject = request.getSubject();
+            this.fullname = request.getFullname();
+            this.email = request.getEmail();
+            this.contents = request.getEmail();
+            this.departmentId = request.getDepartmentId();
+            this.statusId = request.getStatusId();
+            this.priorityId = request.getPriorityId();
+            this.typeId = request.getTypeId();
+            this.autoUserId = request.getAutoUserId();
+            this.userId = request.getUserId();
+            this.staffId = request.getStaffId();
+            this.ownerStaffId = request.getOwnerStaffId();
+            this.type = request.type;
+            this.templateGroup = request.getTemplateGroup();
+            this.ignoreAutoresponder = request.getIgnoreAutoresponder();
+        }
+
         public static TicketCreateRequest where() {
             return new TicketCreateRequest();
         }
@@ -343,8 +361,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest subject(String subject) {
-            this.subject = subject;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.subject = subject;
+            return request;
         }
 
         /**
@@ -354,8 +373,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest fullname(String fullname) {
-            this.fullname = fullname;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.fullname = fullname;
+            return request;
         }
 
         /**
@@ -365,8 +385,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest email(String email) {
-            this.email = email;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.email = email;
+            return request;
         }
 
         /**
@@ -376,8 +397,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest contents(String contents) {
-            this.contents = contents;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.contents = contents;
+            return request;
         }
 
         /**
@@ -387,8 +409,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest departmentId(int id) {
-            this.departmentId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.departmentId = id;
+            return request;
         }
 
         /**
@@ -398,8 +421,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest ticketStatusId(int id) {
-            this.ticketStatusId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.statusId = id;
+            return request;
         }
 
         /**
@@ -409,8 +433,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest ticketPriorityId(int id) {
-            this.ticketPriorityId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.priorityId = id;
+            return request;
         }
 
         /**
@@ -420,8 +445,9 @@ public class TicketConnector {
          * @return instance of request
          */
         public TicketCreateRequest ticketTypeId(int id) {
-            this.ticketTypeId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.typeId = id;
+            return request;
         }
 
         /**
@@ -438,8 +464,9 @@ public class TicketConnector {
             if (staffId != null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
             }
-            this.autoUserId = true;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.autoUserId = true;
+            return request;
         }
 
         /**
@@ -456,8 +483,9 @@ public class TicketConnector {
             if (staffId != null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
             }
-            this.userId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.userId = id;
+            return request;
         }
 
         /**
@@ -474,8 +502,9 @@ public class TicketConnector {
             if (userId != null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
             }
-            this.staffId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.staffId = id;
+            return request;
         }
 
         /**
@@ -486,8 +515,9 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketCreateRequest ownerStaffId(int id) {
-            this.ownerStaffId = id;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.ownerStaffId = id;
+            return request;
         }
 
         /**
@@ -498,8 +528,9 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketCreateRequest type(TICKETTYPE type) {
-            this.type = type;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.type = type;
+            return request;
         }
 
         /**
@@ -510,8 +541,9 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketCreateRequest templateGroup(String templateGroup) {
-            this.templateGroup = templateGroup;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.templateGroup = templateGroup;
+            return request;
         }
 
         /**
@@ -520,8 +552,9 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketCreateRequest ignoreAutoresponder() {
-            this.ignoreAutoresponder = true;
-            return this;
+            TicketCreateRequest request = new TicketCreateRequest(this);
+            request.ignoreAutoresponder = true;
+            return request;
         }
 
         private void validate() {
@@ -544,15 +577,15 @@ public class TicketConnector {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket department id is required"));
             }
 
-            if (ticketStatusId == null) {
+            if (statusId == null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket status id is required"));
             }
 
-            if (ticketPriorityId == null) {
+            if (priorityId == null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket priority id is required"));
             }
 
-            if (ticketTypeId == null) {
+            if (typeId == null) {
                 throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket type id is required"));
             }
             if ((autoUserId == null || !autoUserId) && (userId == null) && (staffId == null) ) {
@@ -580,16 +613,16 @@ public class TicketConnector {
             return departmentId;
         }
 
-        private Integer getTicketStatusId() {
-            return ticketStatusId;
+        private Integer getStatusId() {
+            return statusId;
         }
 
-        private Integer getTicketPriorityId() {
-            return ticketPriorityId;
+        private Integer getPriorityId() {
+            return priorityId;
         }
 
-        private Integer getTicketTypeId() {
-            return ticketTypeId;
+        private Integer getTypeId() {
+            return typeId;
         }
 
         private Boolean getAutoUserId() {
@@ -629,9 +662,9 @@ public class TicketConnector {
         private String fullname;
         private String email;
         private Integer departmentId;
-        private Integer ticketStatusId;
-        private Integer ticketPriorityId;
-        private Integer ticketTypeId;
+        private Integer statusId;
+        private Integer priorityId;
+        private Integer typeId;
         private Integer ownerStaffId;
         private Integer userId;
         private String templateGroup;
@@ -639,6 +672,19 @@ public class TicketConnector {
         private boolean initialized;
 
         private TicketUpdateRequest() {
+        }
+
+        private TicketUpdateRequest(TicketUpdateRequest request) {
+            this.subject = request.getSubject();
+            this.fullname = request.getFullname();
+            this.email = request.getFullname();
+            this.departmentId = request.getDepartmentId();
+            this.statusId = request.getStatusId();
+            this.priorityId = request.getPriorityId();
+            this.typeId = request.getPriorityId();
+            this.ownerStaffId = request.getOwnerStaffId();
+            this.userId = request.getUserId();
+            this.templateGroup = request.getTemplateGroup();
         }
 
         public static TicketUpdateRequest where() {
@@ -652,9 +698,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest subject(final String subject) {
-            initialized = true;
-            this.subject = subject;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.subject = subject;
+            return request;
         }
 
         /**
@@ -664,9 +711,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest fullname(final String fullname) {
-            initialized = true;
-            this.fullname = fullname;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.fullname = fullname;
+            return request;
         }
 
         /**
@@ -676,9 +724,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest email(final String email) {
-            initialized = true;
-            this.email = email;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.email = email;
+            return request;
         }
 
         /**
@@ -688,9 +737,23 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest departmentId(final int id) {
-            initialized = true;
-            this.departmentId = id;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.departmentId = id;
+            return request;
+        }
+
+        /**
+         * Update status id field of ticket.
+         *
+         * @param id new value
+         * @return request instance
+         */
+        public TicketUpdateRequest statusId(final int id) {
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.statusId = id;
+            return request;
         }
 
         /**
@@ -699,10 +762,11 @@ public class TicketConnector {
          * @param id new value
          * @return request instance
          */
-        public TicketUpdateRequest ticketPriorityId(final int id) {
-            initialized = true;
-            this.ticketPriorityId = id;
-            return this;
+        public TicketUpdateRequest priorityId(final int id) {
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.priorityId = id;
+            return request;
         }
 
         /**
@@ -711,10 +775,11 @@ public class TicketConnector {
          * @param id new value
          * @return request instance
          */
-        public TicketUpdateRequest ticketTypeId(final int id) {
-            initialized = true;
-            this.ticketTypeId = id;
-            return this;
+        public TicketUpdateRequest typeId(final int id) {
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.typeId = id;
+            return request;
         }
 
         /**
@@ -724,9 +789,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest ownerStaffId(final int id) {
-            initialized = true;
-            this.ownerStaffId = id;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.ownerStaffId = id;
+            return request;
         }
 
         /**
@@ -736,9 +802,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest userId(final int id) {
-            initialized = true;
-            this.userId = id;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.userId = id;
+            return request;
         }
 
         /**
@@ -748,9 +815,10 @@ public class TicketConnector {
          * @return request instance
          */
         public TicketUpdateRequest templateGroup(final String templateGroup) {
-            initialized = true;
-            this.templateGroup = templateGroup;
-            return this;
+            TicketUpdateRequest request = new TicketUpdateRequest(this);
+            request.initialized = true;
+            request.templateGroup = templateGroup;
+            return request;
         }
 
         private void validate() throws ApiRequestException {
@@ -775,16 +843,16 @@ public class TicketConnector {
             return departmentId;
         }
 
-        private Integer getTicketStatusId() {
-            return ticketStatusId;
+        private Integer getStatusId() {
+            return statusId;
         }
 
-        private Integer getTicketPriorityId() {
-            return ticketPriorityId;
+        private Integer getPriorityId() {
+            return priorityId;
         }
 
-        private Integer getTicketTypeId() {
-            return ticketTypeId;
+        private Integer getTypeId() {
+            return typeId;
         }
 
         private Integer getOwnerStaffId() {
