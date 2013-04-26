@@ -1,4 +1,4 @@
-package org.penguin.kayako;
+package org.penguin.kayako.exception;
 
 /**
  * Wrapper class for exception which happens during creating or sending requests to kayako.

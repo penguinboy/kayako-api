@@ -6,6 +6,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import com.google.common.collect.Lists;
+import org.penguin.kayako.exception.ApiResponseException;
 
 public class ApiResponse {
     private final String responseContent;
@@ -25,12 +26,5 @@ public class ApiResponse {
             throw new ApiResponseException("An exception occurred unmarshalling return content", e);
         }
     }
-    
-    public static class ApiResponseException extends Exception {
-        private static final long serialVersionUID = 6860338648955294068L;
-        
-        private ApiResponseException(String message, Throwable e) {
-            super(message, e);
-        }
-    }
+
 }

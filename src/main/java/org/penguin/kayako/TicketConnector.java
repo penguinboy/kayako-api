@@ -7,7 +7,7 @@ import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Set;
 
-import org.penguin.kayako.ApiResponse.ApiResponseException;
+import org.penguin.kayako.exception.ApiResponseException;
 import org.penguin.kayako.domain.BasicTicket;
 import org.penguin.kayako.domain.BasicTicketCollection;
 
@@ -16,6 +16,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import org.penguin.kayako.domain.Ticket;
 import org.penguin.kayako.domain.TicketCollection;
+import org.penguin.kayako.exception.ApiRequestException;
 import sun.plugin.dom.exception.InvalidStateException;
 
 /**
@@ -40,7 +41,7 @@ public class TicketConnector {
      * @return An ordered list of tickets that match your given criteria
      * @throws ApiResponseException
      *             A wrapped exception of anything that went wrong when handling the response from kayako.
-     * @throws ApiRequestException
+     * @throws org.penguin.kayako.exception.ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<BasicTicket> forDepartment(int departmentId) throws ApiResponseException, ApiRequestException {

@@ -2,9 +2,10 @@ package org.penguin.kayako;
 
 import java.util.List;
 
-import org.penguin.kayako.ApiResponse.ApiResponseException;
+import org.penguin.kayako.exception.ApiResponseException;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.DepartmentCollection;
+import org.penguin.kayako.exception.ApiRequestException;
 
 /**
  * Wrapper for any API calls specific to departments
@@ -27,7 +28,7 @@ public class DepartmentConnector {
      * @return The {@link Department} that represents the department you requested.
      * @throws ApiResponseException
      *             A wrapped exception of anything that went wrong when handling the response from kayako.
-     * @throws ApiRequestException
+     * @throws org.penguin.kayako.exception.ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public Department get(int id) throws ApiResponseException, ApiRequestException {
