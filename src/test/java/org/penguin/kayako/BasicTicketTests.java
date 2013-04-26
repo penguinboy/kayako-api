@@ -1,14 +1,12 @@
 package org.penguin.kayako;
 
 import com.google.common.collect.Lists;
-import com.google.common.io.CharStreams;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.BasicTicket;
 import org.penguin.kayako.util.ContentLoader;
 
 import javax.xml.bind.Unmarshaller;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Date;
 
@@ -95,7 +93,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWorkflow() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
