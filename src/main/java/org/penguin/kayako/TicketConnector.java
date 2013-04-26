@@ -15,11 +15,14 @@ import org.penguin.kayako.domain.BasicTicketCollection;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import org.penguin.kayako.domain.Ticket;
+import org.penguin.kayako.domain.TicketCollection;
 
 /**
  * Wrapper for any API calls specific to tickets
  * 
  * @author raynerw
+ * @author fatroom
  * 
  */
 public class TicketConnector {
@@ -99,6 +102,25 @@ public class TicketConnector {
                 .withPathRaw(Joiner.on(',').join(filter.getOwnerStaffIds()))
                 .withPathRaw(Joiner.on(',').join(filter.getUserIds()))
                 .get().as(BasicTicketCollection.class)
+                .getTickets();
+    }
+
+    /**
+     * Fetches ticket identified by ticket id or by ticket mask ID.
+     *
+     * @param tickedId The unique numeric identifier of the ticket or the ticket mask ID (e.g. ABC-123-4567).
+     * @return An
+     * @throws ApiResponseException
+     *            A wrapped exception of anything that went wrong when handling the response from kayako.
+     * @throws ApiRequestException
+     *            A wrapped exception of anything that went wrong sending the request to kayako.
+     */
+    public List<Ticket> forId(String tickedId) throws ApiResponseException, ApiRequestException {
+        return new ApiRequest(client)
+                .withPath("Tickets")
+                .withPath("Ticket")
+                .withPathRaw(tickedId)
+                .get().as(TicketCollection.class)
                 .getTickets();
     }
     

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<post>
+    <id>1</id>
+    <ticketid>2</ticketid>
+    <dateline>1297842417</dateline>
+    <userid>3</userid>
+    <fullname>John Doe</fullname>
+    <email>john.doe@kayako.com</email>
+    <emailto/>
+    <ipaddress>127.0.0.1</ipaddress>
+    <hasattachments>4</hasattachments>
+    <creator>5</creator>
+    <isthirdparty>0</isthirdparty>
+    <ishtml>1</ishtml>
+    <isemailed>0</isemailed>
+    <staffid>6</staffid>
+    <issurveycomment>0</issurveycomment>
+    <contents><![CDATA[I am just testing]]></contents>
+</post>
