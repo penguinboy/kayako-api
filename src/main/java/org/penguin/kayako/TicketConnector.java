@@ -108,22 +108,39 @@ public class TicketConnector {
     /**
      * Fetches ticket identified by ticket id or by ticket mask ID.
      *
-     * @param tickedId The unique numeric identifier of the ticket or the ticket mask ID (e.g. ABC-123-4567).
+     * @param ticketId The unique numeric identifier of the ticket or the ticket mask ID (e.g. ABC-123-4567).
      * @return An
      * @throws ApiResponseException
      *            A wrapped exception of anything that went wrong when handling the response from kayako.
      * @throws ApiRequestException
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
-    public List<Ticket> forId(String tickedId) throws ApiResponseException, ApiRequestException {
+    public List<Ticket> forId(String ticketId) throws ApiResponseException, ApiRequestException {
         return new ApiRequest(client)
                 .withPath("Tickets")
                 .withPath("Ticket")
-                .withPathRaw(tickedId)
+                .withPathRaw(ticketId)
                 .get().as(TicketCollection.class)
                 .getTickets();
     }
-    
+
+    /**
+     * Delete the ticket identified by ticket id.
+     *
+     * @param ticketId The unique numeric identifier of the ticket.
+     * @throws ApiRequestException
+     *            A wrapped exception of anything that went wrong sending the request to kayako.
+     * @throws ApiResponseException
+     *            A wrapped exception of anything that went wrong when handling the response from kayako.
+     */
+    public void delete(String ticketId) throws ApiRequestException, ApiResponseException {
+        new ApiRequest(client)
+                .withPath("Tickets")
+                .withPath("Ticket")
+                .withPathRaw(ticketId)
+                .delete();
+    }
+
     public static class DepartmentTicketRequest {
         private final Set<Integer> ticketStatusIds;
         private final Set<Integer> ownerStaffIds;
