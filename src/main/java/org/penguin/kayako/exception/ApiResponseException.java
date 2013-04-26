@@ -7,7 +7,7 @@ package org.penguin.kayako.exception;
  * @author raynerw
  * @author fatroom
  */
-public class ApiResponseException extends Exception {
+public class ApiResponseException extends RuntimeException {
     public ApiResponseException(String message, Throwable e) {
         super(message, e);
     }
