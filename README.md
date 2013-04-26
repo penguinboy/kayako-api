@@ -55,7 +55,7 @@ In the future a maven repository will be added.
 API | Fetch | Edit | Delete
 --- | ----- | ---- | ------
 Department | Yes  | - | -
-Ticket | Partial  | - | -
+Ticket | Yes  | - | -
 CustomField | - | - | -
 KnowledgebaseArticle | - | - | -
 KnowledgebaseAttachment | - | - | -
