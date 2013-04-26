@@ -1,20 +1,16 @@
 package org.penguin.kayako;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.security.SecureRandom;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import sun.misc.BASE64Encoder;
 
-import com.google.common.io.CharStreams;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.security.SecureRandom;
 
 public class ApiRequest {
     private final String apiSecret;
@@ -69,12 +65,13 @@ public class ApiRequest {
             HttpResponse response = httpClient.execute(httpGet);
             String content = EntityUtils.toString(response.getEntity()) ;
             return new ApiResponse(content);
-        } catch (Exception e) {
-            // Gotta catch em all
+        } catch (ClientProtocolException e) {
+            throw new ApiRequestException(e);
+        } catch (IOException e) {
             throw new ApiRequestException(e);
         }
     }
-    
+
     public ApiRequest setSalt(String salt) throws ApiRequestException {
         return new ApiRequest(apiKey, apiSecret, salt, generateSignature(apiSecret, salt), uri);
     }
