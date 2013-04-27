@@ -17,7 +17,6 @@ import com.google.common.collect.Lists;
 import org.penguin.kayako.domain.Ticket;
 import org.penguin.kayako.domain.TicketCollection;
 import org.penguin.kayako.exception.ApiRequestException;
-import sun.plugin.dom.exception.InvalidStateException;
 
 /**
  * Wrapper for any API calls specific to tickets
@@ -470,10 +469,10 @@ public class TicketConnector {
          */
         public TicketCreateRequest autoCreateUser() throws ApiRequestException {
             if (userId != null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             if (staffId != null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.autoUserId = true;
@@ -489,10 +488,10 @@ public class TicketConnector {
          */
         public TicketCreateRequest userId(int id) throws ApiRequestException {
             if (autoUserId != null && autoUserId) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             if (staffId != null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.userId = id;
@@ -508,10 +507,10 @@ public class TicketConnector {
          */
         public TicketCreateRequest staffId(int id) throws ApiRequestException {
             if (autoUserId != null && autoUserId) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             if (userId != null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration"));
             }
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.staffId = id;
@@ -570,37 +569,37 @@ public class TicketConnector {
 
         private void validate() {
             if (subject == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket subject is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket subject is required"));
             }
             if (fullname == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket creator full name is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket creator full name is required"));
             }
 
             if (email == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket creator email is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket creator email is required"));
             }
 
             if (contents == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket contents is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket contents is required"));
             }
 
             if (departmentId == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket department id is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket department id is required"));
             }
 
             if (statusId == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket status id is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket status id is required"));
             }
 
             if (priorityId == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket priority id is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket priority id is required"));
             }
 
             if (typeId == null) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket type id is required"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket type id is required"));
             }
             if ((autoUserId == null || !autoUserId) && (userId == null) && (staffId == null) ) {
-                throw new ApiRequestException(new InvalidStateException("Invalid request configuration. Ticket creator id should be specified or allow auto lookup"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket creator id should be specified or allow auto lookup"));
             }
         }
 
@@ -834,7 +833,7 @@ public class TicketConnector {
 
         private void validate() throws ApiRequestException {
             if (!initialized) {
-                throw new ApiRequestException(new InvalidStateException("At lease one field for update should be specified"));
+                throw new ApiRequestException(new IllegalStateException("At lease one field for update should be specified"));
             }
         }
 
