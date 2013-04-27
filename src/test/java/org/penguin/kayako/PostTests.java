@@ -1,6 +1,5 @@
 package org.penguin.kayako;
 
-import junit.framework.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.Post;
 import org.penguin.kayako.util.ContentLoader;
@@ -9,7 +8,8 @@ import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.util.Date;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
+
 
 public class PostTests {
     @Test
@@ -23,7 +23,7 @@ public class PostTests {
         Post note = (Post) unmarshaller.unmarshal(new StringReader(noteXml));
 
         // assert
-        Assert.assertNotNull(note);
+        assertNotNull(note);
     }
 
     @Test

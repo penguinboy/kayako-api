@@ -1,6 +1,5 @@
 package org.penguin.kayako;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.TicketCollection;
 import org.penguin.kayako.util.ContentLoader;
@@ -8,14 +7,9 @@ import org.penguin.kayako.util.ContentLoader;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 
-/**
- * @author Roman Romanchuk<br>
- *         Date: 4/26/13<br>
- *         Time: 11:25 AM<br>
- * @version $Revision$
- * @lastrevision $Date$
- * @contributor $LastChangedBy$
- */
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+
 public class TicketCollectionTests {
     @Test
     public void testTicketsUnmarshall() throws Exception {
@@ -28,7 +22,7 @@ public class TicketCollectionTests {
         TicketCollection tickets = (TicketCollection) unmarshaller.unmarshal(new StringReader(ticketsXml));
 
         // assert
-        Assert.assertNotNull(tickets);
-        Assert.assertEquals(1, tickets.getTickets().size());
+        assertNotNull(tickets);
+        assertEquals(1, tickets.getTickets().size());
     }
 }

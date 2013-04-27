@@ -1,8 +1,9 @@
 package org.penguin.kayako;
 
-import junit.framework.Assert;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class ApiRequestTests {
     
@@ -15,6 +16,6 @@ public class ApiRequestTests {
         ApiRequest request = new ApiRequest(null, apiSecret, null).setSalt("3777329113");
         
         // assert
-        Assert.assertEquals("gFhgQ1Gydk+DLsn6BnHO/eqs1KxPwqmlj2bRWfjFFYs=", request.getSignature());
+        assertEquals("gFhgQ1Gydk+DLsn6BnHO/eqs1KxPwqmlj2bRWfjFFYs=", request.getSignature());
     }
 }

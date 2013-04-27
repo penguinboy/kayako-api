@@ -1,6 +1,5 @@
 package org.penguin.kayako;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.KayakoAccessibility;
@@ -9,6 +8,10 @@ import org.penguin.kayako.util.ContentLoader;
 
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class DepartmentTests {
     
@@ -23,15 +26,15 @@ public class DepartmentTests {
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertNotNull(department);
-        Assert.assertEquals(2, department.getId());
-        Assert.assertEquals("Sales", department.getTitle());
-        Assert.assertEquals(KayakoAccessibility.PUBLIC, department.getType());
-        Assert.assertEquals("tickets", department.getModule());
-        Assert.assertEquals(KayakoApp.TICKETS, department.getApp());
-        Assert.assertEquals(30, department.getDisplayOrder());
-        Assert.assertEquals(0, department.getParentDepartmentId());
-        Assert.assertEquals(false, department.getUserVisibilityCustom());
+        assertNotNull(department);
+        assertEquals(2, department.getId());
+        assertEquals("Sales", department.getTitle());
+        assertEquals(KayakoAccessibility.PUBLIC, department.getType());
+        assertEquals("tickets", department.getModule());
+        assertEquals(KayakoApp.TICKETS, department.getApp());
+        assertEquals(30, department.getDisplayOrder());
+        assertEquals(0, department.getParentDepartmentId());
+        assertEquals(false, department.getUserVisibilityCustom());
     }
     
     @Test
@@ -45,7 +48,7 @@ public class DepartmentTests {
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertEquals(0, department.getUserGroups().size());
+        assertEquals(0, department.getUserGroups().size());
     }
     
     @Test
@@ -59,7 +62,7 @@ public class DepartmentTests {
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertEquals(true, department.getUserVisibilityCustom());
+        assertEquals(true, department.getUserVisibilityCustom());
     }
     
     @Test
@@ -73,7 +76,7 @@ public class DepartmentTests {
         Department department = (Department) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertEquals(3, department.getUserGroups().size());
-        Assert.assertTrue(1234 == department.getUserGroups().get(1));
+        assertEquals(3, department.getUserGroups().size());
+        assertTrue(1234 == department.getUserGroups().get(1));
     }
 }

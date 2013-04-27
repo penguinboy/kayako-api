@@ -1,20 +1,15 @@
 package org.penguin.kayako;
 
-import static junit.framework.Assert.assertEquals;
+import org.junit.Test;
+import org.penguin.kayako.domain.Note;
+import org.penguin.kayako.util.ContentLoader;
 
-import java.io.InputStreamReader;
+import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.util.Date;
 
-import javax.xml.bind.Unmarshaller;
-
-import junit.framework.Assert;
-
-import org.junit.Test;
-import org.penguin.kayako.domain.Note;
-
-import com.google.common.io.CharStreams;
-import org.penguin.kayako.util.ContentLoader;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class NoteTests {
     
@@ -29,7 +24,7 @@ public class NoteTests {
         Note note = (Note) unmarshaller.unmarshal(new StringReader(noteXml));
         
         // assert
-        Assert.assertNotNull(note);
+        assertNotNull(note);
     }
     
     @Test

@@ -1,12 +1,13 @@
 package org.penguin.kayako;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.DepartmentCollection;
 import org.penguin.kayako.util.ContentLoader;
 
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
+
+import static org.junit.Assert.assertNotNull;
 
 public class DepartmentCollectionTests {
     @Test
@@ -20,6 +21,6 @@ public class DepartmentCollectionTests {
         DepartmentCollection departments = (DepartmentCollection) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertNotNull(departments);
+        assertNotNull(departments);
     }
 }
