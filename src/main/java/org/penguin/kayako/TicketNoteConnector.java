@@ -29,7 +29,7 @@ public class TicketNoteConnector extends AbstractConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako
      *
      */
-    public List<Note> forTicket(final int ticketId) throws ApiResponseException, ApiRequestException {
+    public List<Note> forTicket(final int ticketId) throws ApiRequestException, ApiResponseException {
         return new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("TicketNote")
@@ -50,7 +50,7 @@ public class TicketNoteConnector extends AbstractConnector {
      * @throws ApiResponseException
      *             A wrapped exception of anything that went wrong when handling the response from kayako
      */
-    public List<Note> forId(final int ticketId, final int noteId) {
+    public List<Note> forId(final int ticketId, final int noteId) throws ApiRequestException, ApiResponseException {
         return new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("TicketNote")
@@ -58,6 +58,24 @@ public class TicketNoteConnector extends AbstractConnector {
                 .withPathRaw(String.valueOf(noteId))
                 .get().as(NoteCollection.class)
                 .getNotes();
+    }
+
+    /**
+     *
+     * @param ticketId unique numeric identifier of the ticket
+     * @param noteId unique numeric identifier of the ticket note
+     * @throws ApiRequestException
+     *             A wrapped exception of anything that went wrong sending the request to kayako
+     * @throws ApiResponseException
+     *             A wrapped exception of anything that went wrong when handling the response from kayako
+     */
+    public void delete(final int ticketId, final int noteId) throws ApiRequestException, ApiResponseException {
+        new ApiRequest(getClient())
+                .withPath("Tickets")
+                .withPath("TicketNote")
+                .withPathRaw(String.valueOf(ticketId))
+                .withPathRaw(String.valueOf(noteId))
+                .delete();
     }
 
 }

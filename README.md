@@ -70,7 +70,7 @@ In the future a maven repository will be added.
 | TicketAttachment | - | - | - |
 | TicketCount | - | - | - |
 | TicketCustomField | - | - | - |
-| TicketNote | Yes | - | - |
+| TicketNote | Yes | - | Yes |
 | TicketPost | - | - | - |
 | TicketPriority | - | - | - |
 | TicketSearch | - | - | - |
