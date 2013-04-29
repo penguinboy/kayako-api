@@ -11,7 +11,6 @@ import com.google.common.collect.Lists;
  * An object used to unmarshall api responses from kayako. Should never be returned to a user.
  * 
  * @author raynerw
- * 
  */
 @XmlRootElement(name = "tickets")
 public class BasicTicketCollection {

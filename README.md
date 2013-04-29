@@ -67,7 +67,7 @@ In the future a maven repository will be added.
 | NewsSubscriber | - | - | - |
 | Staff | - | - | - |
 | StaffGroup | - | - | - |
-| TicketAttachment | - | - | - |
+| TicketAttachment | Yes | Yes | Yes |
 | TicketCount | - | - | - |
 | TicketCustomField | Yes | Yes | Yes |
 | TicketNote | Yes | Yes | Yes |

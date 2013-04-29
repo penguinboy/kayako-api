@@ -51,12 +51,12 @@ public class KayakoClient {
     }
 
     /**
-     * Interact with kayako ticket notes.
+     * Interact with kayako ticket attachments.
      *
-     * @return An instance of {@link TicketNoteConnector} that allows you to interact with ticket notes.
+     * @return An instance of {@link AttachmentConnector} that allows you to interact with ticket attachments.
      */
-    public TicketNoteConnector notes() {
-        return new TicketNoteConnector(this);
+    public AttachmentConnector attachments() {
+        return new AttachmentConnector(this);
     }
 
     /**
@@ -66,6 +66,15 @@ public class KayakoClient {
      */
     public TicketCustomFieldConnector ticketCustomFields() {
         return new TicketCustomFieldConnector(this);
+    }
+
+    /**
+     * Interact with kayako ticket notes.
+     *
+     * @return An instance of {@link TicketNoteConnector} that allows you to interact with ticket notes.
+     */
+    public TicketNoteConnector notes() {
+        return new TicketNoteConnector(this);
     }
 
     protected String getApiKey() {
