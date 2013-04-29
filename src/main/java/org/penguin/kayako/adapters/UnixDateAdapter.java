@@ -1,8 +1,7 @@
 package org.penguin.kayako.adapters;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.util.Date;
 
 public class UnixDateAdapter extends XmlAdapter<Integer, Date> {
     

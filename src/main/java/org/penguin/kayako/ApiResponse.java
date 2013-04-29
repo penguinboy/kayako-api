@@ -1,12 +1,11 @@
 package org.penguin.kayako;
 
-import java.io.StringReader;
+import com.google.common.collect.Lists;
+import org.penguin.kayako.exception.ApiResponseException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-
-import com.google.common.collect.Lists;
-import org.penguin.kayako.exception.ApiResponseException;
+import java.io.StringReader;
 
 public class ApiResponse {
     private final String responseContent;

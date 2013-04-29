@@ -1,13 +1,12 @@
 package org.penguin.kayako.domain;
 
-import java.util.Date;
+import org.penguin.kayako.adapters.UnixDateAdapter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import org.penguin.kayako.adapters.UnixDateAdapter;
+import java.util.Date;
 
 /**
  * An object that represent kayako notes. These are currently returned in {@link BasicTicket} instances, but could

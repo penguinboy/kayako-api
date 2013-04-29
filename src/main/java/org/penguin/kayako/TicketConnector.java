@@ -1,22 +1,21 @@
 package org.penguin.kayako;
 
-import static com.google.common.collect.Sets.newHashSet;
-import static com.google.common.collect.Sets.union;
-import static java.util.Arrays.asList;
+import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
+import org.penguin.kayako.domain.BasicTicket;
+import org.penguin.kayako.domain.BasicTicketCollection;
+import org.penguin.kayako.domain.Ticket;
+import org.penguin.kayako.domain.TicketCollection;
+import org.penguin.kayako.exception.ApiRequestException;
+import org.penguin.kayako.exception.ApiResponseException;
 
 import java.util.List;
 import java.util.Set;
 
-import org.penguin.kayako.exception.ApiResponseException;
-import org.penguin.kayako.domain.BasicTicket;
-import org.penguin.kayako.domain.BasicTicketCollection;
-
-import com.google.common.base.Joiner;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import org.penguin.kayako.domain.Ticket;
-import org.penguin.kayako.domain.TicketCollection;
-import org.penguin.kayako.exception.ApiRequestException;
+import static com.google.common.collect.Sets.newHashSet;
+import static com.google.common.collect.Sets.union;
+import static java.util.Arrays.asList;
 
 /**
  * Wrapper for any API calls specific to tickets.

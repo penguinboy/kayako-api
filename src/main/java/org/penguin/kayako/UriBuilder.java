@@ -1,7 +1,6 @@
 package org.penguin.kayako;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
-import static java.net.URLEncoder.encode;
+import com.google.common.collect.ImmutableMap;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -11,7 +10,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.common.collect.ImmutableMap;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.net.URLEncoder.encode;
 
 /**
  * An builder for URLs. Based on the javax.wx.rs UriBuilder.

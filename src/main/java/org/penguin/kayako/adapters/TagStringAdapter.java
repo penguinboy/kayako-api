@@ -1,12 +1,11 @@
 package org.penguin.kayako.adapters;
 
-import java.util.List;
-
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.util.List;
 
 public class TagStringAdapter extends XmlAdapter<String, List<String>> {
     @Override
