@@ -92,9 +92,7 @@ public class TicketConnector extends AbstractConnector {
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<BasicTicket> forDepartments(final Iterable<Integer> departmentIds, final DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(getClient())
-                .withPath("Tickets")
-                .withPath("Ticket")
+        return getApiRequest()
                 .withPath("ListAll")
                 .withPathRaw(Joiner.on(',').skipNulls().join(departmentIds))
                 .withPathRaw(Joiner.on(',').join(filter.getTicketStatusIds()))
@@ -115,9 +113,7 @@ public class TicketConnector extends AbstractConnector {
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<Ticket> forId(final String ticketId) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(getClient())
-                .withPath("Tickets")
-                .withPath("Ticket")
+        return getApiRequest()
                 .withPathRaw(ticketId)
                 .get().as(TicketCollection.class)
                 .getTickets();
@@ -135,9 +131,7 @@ public class TicketConnector extends AbstractConnector {
      */
     public List<Ticket> createTicket(final TicketCreateRequest request) throws ApiRequestException, ApiResponseException {
         request.validate();
-        ApiRequest apiRequest = new ApiRequest(getClient())
-                .withPath("Tickets")
-                .withPath("Ticket")
+        ApiRequest apiRequest = getApiRequest()
                 .withPostParam("subject", request.getSubject())
                 .withPostParam("fullname", request.getFullname())
                 .withPostParam("email", request.getEmail())
@@ -188,9 +182,7 @@ public class TicketConnector extends AbstractConnector {
      */
     public List<Ticket> updateTicket(final String ticketId, final TicketUpdateRequest request) throws ApiRequestException, ApiResponseException {
         request.validate();
-        ApiRequest apiRequest = new ApiRequest(getClient())
-                .withPath("Tickets")
-                .withPath("Ticket")
+        ApiRequest apiRequest = getApiRequest()
                 .withPathRaw(ticketId);
         if (request.getSubject() != null) {
             apiRequest = apiRequest.withPostParam("subject", request.getSubject());
@@ -238,11 +230,17 @@ public class TicketConnector extends AbstractConnector {
      *            A wrapped exception of anything that went wrong when handling the response from kayako.
      */
     public void delete(String ticketId) throws ApiRequestException, ApiResponseException {
-        new ApiRequest(getClient())
-                .withPath("Tickets")
-                .withPath("Ticket")
+        getApiRequest()
                 .withPathRaw(ticketId)
                 .delete();
+    }
+
+    @Override
+    protected ApiRequest getApiRequest() {
+        ApiRequest request = super.getApiRequest();
+        return request
+                .withPath("Tickets")
+                .withPath("Ticket");
     }
 
     public static class DepartmentTicketRequest {
@@ -303,7 +301,7 @@ public class TicketConnector extends AbstractConnector {
         }
     }
 
-    public static class TicketCreateRequest {
+    public static class TicketCreateRequest extends AbstractRequest {
         public enum TICKETTYPE {
             DEFAULT("default"),
             PHONE("phone");
@@ -368,8 +366,10 @@ public class TicketConnector extends AbstractConnector {
          *
          * @param subject subject
          * @return instance of request
+         * @throws ApiRequestException in case subject is null
          */
-        public TicketCreateRequest subject(String subject) {
+        public TicketCreateRequest subject(String subject) throws ApiRequestException {
+            checkNotNull(subject);
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.subject = subject;
             return request;
@@ -380,8 +380,10 @@ public class TicketConnector extends AbstractConnector {
          *
          * @param fullname full name
          * @return instance of request
+         * @throws ApiRequestException if case subject is null
          */
-        public TicketCreateRequest fullname(String fullname) {
+        public TicketCreateRequest fullname(String fullname) throws ApiRequestException {
+            checkNotNull(fullname);
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.fullname = fullname;
             return request;
@@ -392,8 +394,10 @@ public class TicketConnector extends AbstractConnector {
          *
          * @param email address
          * @return instance of request
+         * @throws ApiRequestException in case email is null
          */
-        public TicketCreateRequest email(String email) {
+        public TicketCreateRequest email(String email) throws ApiRequestException {
+            checkNotNull(email);
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.email = email;
             return request;
@@ -404,8 +408,10 @@ public class TicketConnector extends AbstractConnector {
          *
          * @param contents contents of the first ticket post
          * @return instance of request
+         * @throws ApiRequestException in case contents is null
          */
-        public TicketCreateRequest contents(String contents) {
+        public TicketCreateRequest contents(String contents) throws ApiRequestException {
+            checkNotNull(contents);
             TicketCreateRequest request = new TicketCreateRequest(this);
             request.contents = contents;
             return request;
@@ -566,7 +572,7 @@ public class TicketConnector extends AbstractConnector {
             return request;
         }
 
-        private void validate() {
+        protected void validate() {
             if (subject == null) {
                 throw new ApiRequestException(new IllegalStateException("Invalid request configuration. Ticket subject is required"));
             }
@@ -666,7 +672,7 @@ public class TicketConnector extends AbstractConnector {
         }
     }
 
-    public static class TicketUpdateRequest {
+    public static class TicketUpdateRequest extends AbstractRequest {
         private String subject;
         private String fullname;
         private String email;
@@ -830,7 +836,7 @@ public class TicketConnector extends AbstractConnector {
             return request;
         }
 
-        private void validate() throws ApiRequestException {
+        protected void validate() throws ApiRequestException {
             if (!initialized) {
                 throw new ApiRequestException(new IllegalStateException("At lease one field for update should be specified"));
             }

@@ -31,8 +31,7 @@ public class DepartmentConnector extends AbstractConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public Department get(int id) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(getClient())
-                .withPath("Base").withPath("Department")
+        return getApiRequest()
                 .withPath(String.valueOf(id))
                 .get().as(DepartmentCollection.class).getDepartments().get(0);
     }
@@ -47,8 +46,15 @@ public class DepartmentConnector extends AbstractConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<Department> list() throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(getClient())
-                .withPath("Base").withPath("Department")
+        return getApiRequest()
                 .get().as(DepartmentCollection.class).getDepartments();
+    }
+
+    @Override
+    protected ApiRequest getApiRequest() {
+        ApiRequest request = super.getApiRequest();
+        return request
+                .withPath("Base")
+                .withPath("Department");
     }
 }
