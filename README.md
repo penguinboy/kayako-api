@@ -69,7 +69,7 @@ In the future a maven repository will be added.
 | StaffGroup | - | - | - |
 | TicketAttachment | - | - | - |
 | TicketCount | - | - | - |
-| TicketCustomField | Yes | - | - |
+| TicketCustomField | Yes | Yes | Yes |
 | TicketNote | Yes | Yes | Yes |
 | TicketPost | - | - | - |
 | TicketPriority | - | - | - |
