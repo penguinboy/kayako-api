@@ -43,12 +43,21 @@ public class KayakoClient {
     /**
      * Interact with kayako tickets
      * 
-     * @return An instance of {@link TicketConnector} that allows you to fetch Tickets.
+     * @return An instance of {@link TicketConnector} that allows you to interact with Tickets.
      */
     public TicketConnector tickets() {
         return new TicketConnector(this);
     }
-    
+
+    /**
+     * Interact with kayako ticket notes.
+     *
+     * @return An instance of {@link TicketNoteConnector} that allows you to fetch ticket notes.
+     */
+    public TicketNoteConnector notes() {
+        return new TicketNoteConnector(this);
+    }
+
     protected String getApiKey() {
         return apiKey;
     }
