@@ -20,10 +20,10 @@ public class PostTests {
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Post.class);
 
         // act
-        Post note = (Post) unmarshaller.unmarshal(new StringReader(noteXml));
+        Post post = (Post) unmarshaller.unmarshal(new StringReader(noteXml));
 
         // assert
-        assertNotNull(note);
+        assertNotNull(post);
     }
 
     @Test
