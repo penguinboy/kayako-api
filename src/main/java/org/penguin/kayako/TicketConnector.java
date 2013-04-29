@@ -25,13 +25,12 @@ import org.penguin.kayako.exception.ApiRequestException;
  * @author fatroom
  * 
  */
-public class TicketConnector {
-    private final KayakoClient client;
-    
+public class TicketConnector extends AbstractConnector {
+
     protected TicketConnector(final KayakoClient client) {
-        this.client = client;
+        super(client);
     }
-    
+
     /**
      * Fetches open tickets that belong to a given department. Tickets are not ordered.
      * 
@@ -93,7 +92,7 @@ public class TicketConnector {
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<BasicTicket> forDepartments(final Iterable<Integer> departmentIds, final DepartmentTicketRequest filter) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
+        return new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("Ticket")
                 .withPath("ListAll")
@@ -116,7 +115,7 @@ public class TicketConnector {
      *            A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<Ticket> forId(final String ticketId) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
+        return new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("Ticket")
                 .withPathRaw(ticketId)
@@ -136,7 +135,7 @@ public class TicketConnector {
      */
     public List<Ticket> createTicket(final TicketCreateRequest request) throws ApiRequestException, ApiResponseException {
         request.validate();
-        ApiRequest apiRequest = new ApiRequest(client)
+        ApiRequest apiRequest = new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("Ticket")
                 .withPostParam("subject", request.getSubject())
@@ -189,7 +188,7 @@ public class TicketConnector {
      */
     public List<Ticket> updateTicket(final String ticketId, final TicketUpdateRequest request) throws ApiRequestException, ApiResponseException {
         request.validate();
-        ApiRequest apiRequest = new ApiRequest(client)
+        ApiRequest apiRequest = new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("Ticket")
                 .withPathRaw(ticketId);
@@ -239,7 +238,7 @@ public class TicketConnector {
      *            A wrapped exception of anything that went wrong when handling the response from kayako.
      */
     public void delete(String ticketId) throws ApiRequestException, ApiResponseException {
-        new ApiRequest(client)
+        new ApiRequest(getClient())
                 .withPath("Tickets")
                 .withPath("Ticket")
                 .withPathRaw(ticketId)

@@ -13,13 +13,12 @@ import org.penguin.kayako.exception.ApiRequestException;
  * @author raynerw
  * 
  */
-public class DepartmentConnector {
-    private final KayakoClient client;
-    
-    protected DepartmentConnector(KayakoClient client) {
-        this.client = client;
+public class DepartmentConnector extends AbstractConnector {
+
+    protected DepartmentConnector(final KayakoClient client) {
+        super(client);
     }
-    
+
     /**
      * Get the details of a department
      * 
@@ -32,7 +31,7 @@ public class DepartmentConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public Department get(int id) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
+        return new ApiRequest(getClient())
                 .withPath("Base").withPath("Department")
                 .withPath(String.valueOf(id))
                 .get().as(DepartmentCollection.class).getDepartments().get(0);
@@ -48,7 +47,7 @@ public class DepartmentConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<Department> list() throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
+        return new ApiRequest(getClient())
                 .withPath("Base").withPath("Department")
                 .get().as(DepartmentCollection.class).getDepartments();
     }
