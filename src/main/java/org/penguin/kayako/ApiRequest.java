@@ -24,7 +24,7 @@ public class ApiRequest {
     private final String signature;
 
     private UriBuilder uri;
-    private HttpParams params;
+    private BasicHttpParams params;
 
     protected ApiRequest(KayakoClient client) throws ApiRequestException {
         this(client.getApiKey(), client.getApiSecret(), client.getBaseURI());
@@ -45,13 +45,14 @@ public class ApiRequest {
         this.params = new BasicHttpParams();
     }
 
-    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri, HttpParams params) {
+    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri, BasicHttpParams params) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.salt = salt;
         this.signature = signature;
         this.uri = uri;
-        this.params = params;
+        this.params = new BasicHttpParams();
+        params.copyParams(this.params);
     }
 
     public ApiRequest withPath(String path) {
@@ -63,8 +64,9 @@ public class ApiRequest {
     }
 
     public ApiRequest withPostParam(final String name, final Object value) {
-        params.setParameter(name, value);
-        return this;
+        ApiRequest request = new ApiRequest(apiKey, apiSecret, salt, signature, uri, params);
+        request.params.setParameter(name, value);
+        return request;
     }
 
     public ApiResponse get() throws ApiRequestException {
