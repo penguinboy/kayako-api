@@ -838,7 +838,7 @@ public class TicketConnector extends AbstractConnector {
 
         protected void validate() throws ApiRequestException {
             if (!initialized) {
-                throw new ApiRequestException(new IllegalStateException("At lease one field for update should be specified"));
+                throw new ApiRequestException(new IllegalStateException("Invalid request configuration. At least one field for update should be specified"));
             }
         }
 
