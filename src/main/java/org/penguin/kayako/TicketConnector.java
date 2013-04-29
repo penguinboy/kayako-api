@@ -19,7 +19,7 @@ import org.penguin.kayako.domain.TicketCollection;
 import org.penguin.kayako.exception.ApiRequestException;
 
 /**
- * Wrapper for any API calls specific to tickets
+ * Wrapper for any API calls specific to tickets.
  * 
  * @author raynerw
  * @author fatroom

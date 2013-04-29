@@ -4,6 +4,7 @@ package org.penguin.kayako;
  * Kayako client interface. This is the starting point for any developers looking to use this kayako api wrapper.
  * 
  * @author raynerw
+ * @author fatroom
  * 
  */
 public class KayakoClient {
@@ -52,10 +53,19 @@ public class KayakoClient {
     /**
      * Interact with kayako ticket notes.
      *
-     * @return An instance of {@link TicketNoteConnector} that allows you to fetch ticket notes.
+     * @return An instance of {@link TicketNoteConnector} that allows you to interact with ticket notes.
      */
     public TicketNoteConnector notes() {
         return new TicketNoteConnector(this);
+    }
+
+    /**
+     * Interact with kayako ticket custom fields.
+     *
+     * @return An instance of {@link TicketCustomFieldConnector} that allows you to fetch ticket custom fields.
+     */
+    public TicketCustomFieldConnector ticketCustomFields() {
+        return new TicketCustomFieldConnector(this);
     }
 
     protected String getApiKey() {
