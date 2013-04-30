@@ -1,12 +1,15 @@
 package org.penguin.kayako;
 
+import com.google.common.collect.Lists;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.penguin.kayako.exception.ApiRequestException;
 import sun.misc.BASE64Encoder;
@@ -15,6 +18,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.List;
 
 public class ApiRequest {
     private final String apiSecret;
@@ -23,7 +27,7 @@ public class ApiRequest {
     private final String signature;
 
     private UriBuilder uri;
-    private BasicHttpParams params;
+    private List<NameValuePair> params;
 
     protected ApiRequest(KayakoClient client) throws ApiRequestException {
         this(client.getApiKey(), client.getApiSecret(), client.getBaseURI());
@@ -41,17 +45,16 @@ public class ApiRequest {
         this.salt = saltBuilder.toString();
         this.signature = generateSignature(apiSecret, salt);
         this.uri = baseURI;
-        this.params = new BasicHttpParams();
+        this.params = Lists.newArrayList();
     }
 
-    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri, BasicHttpParams params) {
+    private ApiRequest(String apiKey, String apiSecret, String salt, String signature, UriBuilder uri, List<NameValuePair> params) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.salt = salt;
         this.signature = signature;
         this.uri = uri;
-        this.params = new BasicHttpParams();
-        params.copyParams(this.params);
+        this.params = Lists.newArrayList(params);
     }
 
     public ApiRequest withPath(String path) {
@@ -62,9 +65,9 @@ public class ApiRequest {
         return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPathUnescaped(path), params);
     }
 
-    public ApiRequest withPostParam(final String name, final Object value) {
+    public ApiRequest withPostParam(final String name, final String value) {
         ApiRequest request = new ApiRequest(apiKey, apiSecret, salt, signature, uri, params);
-        request.params.setParameter(name, value);
+        request.params.add(new BasicNameValuePair(name, value));
         return request;
     }
 
@@ -82,9 +85,9 @@ public class ApiRequest {
 
     public ApiResponse post() throws ApiRequestException {
         try {
-            UriBuilder uriBuilder = applySecurityParams(uri);
-            HttpPost post = new HttpPost(uriBuilder.toURI());
-            post.setParams(params);
+            HttpPost post = new HttpPost(uri.toURI());
+            List<NameValuePair> requestParams = applySecurityParams(params);
+            post.setEntity(new UrlEncodedFormEntity(requestParams));
             String content = executeRequest(post);
             return new ApiResponse(content);
         } catch (IOException e) {
@@ -98,7 +101,8 @@ public class ApiRequest {
         try {
             UriBuilder uriBuilder = applySecurityParams(uri);
             HttpPut put = new HttpPut(uriBuilder.toURI());
-            put.setParams(params);
+            List<NameValuePair> requestParams = applySecurityParams(params);
+            put.setEntity(new UrlEncodedFormEntity(requestParams));
             String content = executeRequest(put);
             return new ApiResponse(content);
         } catch (ClientProtocolException e) {
@@ -156,4 +160,11 @@ public class ApiRequest {
                 .queryParam("signature", signature);
     }
 
+    private List<NameValuePair> applySecurityParams(final List<NameValuePair> originalParams) {
+        List<NameValuePair> params = Lists.newArrayList(originalParams);
+        params.add(new BasicNameValuePair("apikey", apiKey));
+        params.add(new BasicNameValuePair("salt", salt));
+        params.add(new BasicNameValuePair("signature", signature));
+        return params;
+    }
 }
