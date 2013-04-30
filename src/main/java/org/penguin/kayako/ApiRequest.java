@@ -65,9 +65,9 @@ public class ApiRequest {
         return new ApiRequest(apiKey, apiSecret, salt, signature, uri.queryPathUnescaped(path), params);
     }
 
-    public ApiRequest withPostParam(final String name, final String value) {
+    public ApiRequest withPostParam(final String name, final Object value) {
         ApiRequest request = new ApiRequest(apiKey, apiSecret, salt, signature, uri, params);
-        request.params.add(new BasicNameValuePair(name, value));
+        request.params.add(new BasicNameValuePair(name, String.valueOf(value)));
         return request;
     }
 
