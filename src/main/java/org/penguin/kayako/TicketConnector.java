@@ -342,7 +342,7 @@ public class TicketConnector extends AbstractConnector {
             this.subject = request.getSubject();
             this.fullname = request.getFullname();
             this.email = request.getEmail();
-            this.contents = request.getEmail();
+            this.contents = request.getContents();
             this.departmentId = request.getDepartmentId();
             this.statusId = request.getStatusId();
             this.priorityId = request.getPriorityId();
