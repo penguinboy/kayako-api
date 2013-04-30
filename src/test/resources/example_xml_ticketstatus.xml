@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ticketstatus>
+    <id>1</id>
+    <title>Open</title>
+    <displayorder>2</displayorder>
+    <departmentid>3</departmentid>
+    <displayicon>icon.png</displayicon>
+    <type>private</type>
+    <displayinmainlist>0</displayinmainlist>
+    <markasresolved>0</markasresolved>
+    <displaycount>1</displaycount>
+    <statuscolor>#8BB467</statuscolor>
+    <statusbgcolor>#8BB468</statusbgcolor>
+    <resetduetime>0</resetduetime>
+    <triggersurvey>0</triggersurvey>
+    <staffvisibilitycustom>1</staffvisibilitycustom>
+    <staffgroupid>4</staffgroupid>
+</ticketstatus>

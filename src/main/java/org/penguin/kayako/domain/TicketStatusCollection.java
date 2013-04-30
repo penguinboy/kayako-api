@@ -11,12 +11,12 @@ import java.util.List;
  *
  * @author fatroom
  */
-@XmlRootElement(name = "tickets")
-public class TicketCollection {
-    @XmlElement(name = "ticket")
-    private List<Ticket> tickets = Lists.newArrayList();
+@XmlRootElement(name = "ticketstatuses")
+public class TicketStatusCollection {
+    @XmlElement(name = "ticketstatus")
+    private List<TicketStatus> statuses = Lists.newArrayList();
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<TicketStatus> getStatuses() {
+        return statuses;
     }
 }

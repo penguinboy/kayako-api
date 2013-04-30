@@ -8,7 +8,7 @@ import org.penguin.kayako.exception.ApiResponseException;
 import java.util.List;
 
 /**
- * Wrapper for any API calls specific to ticket notes
+ * Wrapper for any API calls specific to ticket notes.
  *
  * @author fatroom
  */

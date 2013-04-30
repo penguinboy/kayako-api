@@ -74,7 +74,7 @@ In the future a maven repository will be added.
 | TicketPost | - | - | - |
 | TicketPriority | - | - | - |
 | TicketSearch | - | - | - |
-| TicketStatus | - | - | - |
+| TicketStatus | Yes | NA | NA |
 | TicketTimeTrack | - | - | - |
 | TicketType | - | - | - |
 | TroubleshooterAttachment | - | - | - |

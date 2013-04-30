@@ -11,7 +11,6 @@ import java.util.List;
  * A representation of a kayako ticket. Same as {@link BasicTicket} but includes collection of {@link Post}.
  *
  * @author fatroom
- *
  */
 @XmlRootElement(name = "ticket")
 public class Ticket extends AbstractTicket {
