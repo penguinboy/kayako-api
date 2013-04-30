@@ -77,6 +77,15 @@ public class KayakoClient {
         return new TicketNoteConnector(this);
     }
 
+    /**
+     * Interact with kayako ticket statuses.
+     *
+     * @return An instance of {@link TicketStatusConnector} that allows you to fetch ticket statuses.
+     */
+    public TicketStatusConnector statuses() {
+        return new TicketStatusConnector(this);
+    }
+
     protected String getApiKey() {
         return apiKey;
     }
