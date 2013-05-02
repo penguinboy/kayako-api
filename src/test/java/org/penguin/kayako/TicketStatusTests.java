@@ -26,7 +26,7 @@ public class TicketStatusTests {
     }
 
     @Test
-    public void testTicketCustomFieldContentCorrect() throws Exception {
+    public void testTicketStatusContentCorrect() throws Exception {
         // arrange
         String noteXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticketstatus.xml");
 
@@ -54,7 +54,7 @@ public class TicketStatusTests {
     }
 
     @Test
-    public void testTicketCustomFieldContentCorrectMissingStaffGroupId() throws Exception {
+    public void testTicketStatusCorrectMissingStaffGroupId() throws Exception {
         // arrange
         String noteXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticketstatus2.xml");
 

@@ -80,10 +80,19 @@ public class KayakoClient {
     /**
      * Interact with kayako ticket statuses.
      *
-     * @return An instance of {@link TicketStatusConnector} that allows you to fetch ticket statuses.
+     * @return An instance of {@link TicketStatusConnector} that allows you to fetch ticket statuses
      */
     public TicketStatusConnector statuses() {
         return new TicketStatusConnector(this);
+    }
+
+    /**
+     * Interact with kayako ticket types.
+     *
+     * @return An instance of {@link TicketTypeConnector} that allows you to fetch ticket types
+     */
+    public TicketTypeConnector types() {
+        return new TicketTypeConnector(this);
     }
 
     protected String getApiKey() {
