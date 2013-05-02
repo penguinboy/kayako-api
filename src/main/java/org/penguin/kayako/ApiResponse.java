@@ -12,7 +12,6 @@ public class ApiResponse {
     
     protected ApiResponse(String responseContent) {
         this.responseContent = responseContent;
-        Lists.newArrayList();
     }
     
     @SuppressWarnings("unchecked")
