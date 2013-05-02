@@ -47,7 +47,7 @@ public class TicketTypeTests {
     }
 
     @Test
-    public void testTicketTypeCorrectCustomVisibility() throws Exception {
+    public void testTicketTypeEnabledCustomVisibility() throws Exception {
         // arrange
         String noteXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_tickettype2.xml");
 

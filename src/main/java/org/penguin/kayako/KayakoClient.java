@@ -95,6 +95,15 @@ public class KayakoClient {
         return new TicketTypeConnector(this);
     }
 
+    /**
+     * Interact with kayako ticket priorities.
+     *
+     * @return An instance of {@link TicketPriorityConnector} that allows you to fetch ticket types
+     */
+    public TicketPriorityConnector priorities() {
+        return new TicketPriorityConnector(this);
+    }
+
     protected String getApiKey() {
         return apiKey;
     }
