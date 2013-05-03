@@ -17,6 +17,7 @@ import sun.misc.BASE64Encoder;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.security.SecureRandom;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class ApiRequest {
         try {
             HttpPost post = new HttpPost(uri.toURI());
             List<NameValuePair> requestParams = applySecurityParams(params);
-            post.setEntity(new UrlEncodedFormEntity(requestParams));
+            post.setEntity(new UrlEncodedFormEntity(requestParams, Charset.forName("UTF-8")));
             String content = executeRequest(post);
             return new ApiResponse(content);
         } catch (IOException e) {
@@ -102,7 +103,7 @@ public class ApiRequest {
             UriBuilder uriBuilder = applySecurityParams(uri);
             HttpPut put = new HttpPut(uriBuilder.toURI());
             List<NameValuePair> requestParams = applySecurityParams(params);
-            put.setEntity(new UrlEncodedFormEntity(requestParams));
+            put.setEntity(new UrlEncodedFormEntity(requestParams, Charset.forName("UTF-8")));
             String content = executeRequest(put);
             return new ApiResponse(content);
         } catch (ClientProtocolException e) {
