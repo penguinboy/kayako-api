@@ -1,45 +1,46 @@
-package org.penguin.kayako;
-
-import com.google.common.collect.Lists;
-import com.google.common.io.CharStreams;
-import org.junit.Test;
-import org.penguin.kayako.domain.BasicTicket;
-import org.penguin.kayako.domain.Ticket;
-import org.penguin.kayako.util.ContentLoader;
-
-import javax.xml.bind.Unmarshaller;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.Date;
+package org.penguin.kayako.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class TicketTests {
+import java.io.StringReader;
+import java.util.Date;
+
+import javax.xml.bind.Unmarshaller;
+
+import org.junit.Test;
+import org.penguin.kayako.UnmarshallerFactory;
+import org.penguin.kayako.domain.BasicTicket;
+import org.penguin.kayako.util.ContentLoader;
+
+import com.google.common.collect.Lists;
+
+public class BasicTicketTests {
+    
     @Test
     public void testTicketUnmarshalling() throws Exception {
         // arrange
-        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticket.xml");
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
+        
         // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
+        
         // assert
         assertNotNull(ticket);
     }
-
+    
     @Test
     public void testTicketContentCorrect() throws Exception {
         // arrange
-        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticket.xml");
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
+        
         // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
+        
         // assert
         assertEquals(2, ticket.getId());
         assertEquals("OLJ-171-16930", ticket.getDisplayId());
@@ -52,9 +53,9 @@ public class TicketTests {
         assertEquals(7, ticket.getUserOrganizationId());
         assertEquals(8, ticket.getOwnerStaffId());
         assertEquals(null, ticket.getOwnerStaffName());
-        assertEquals("John Doe", ticket.getUserFullName());
-        assertEquals("john.doe@kayako.com", ticket.getUserEmail());
-        assertEquals("John Doe", ticket.getLastReplierFullName());
+        assertEquals("Varun Shoor", ticket.getUserFullName());
+        assertEquals("varun.shoor@kayako.com", ticket.getUserEmail());
+        assertEquals("Varun Shoor", ticket.getLastReplierFullName());
         assertEquals("This is just a test", ticket.getSubject());
         assertEquals(new Date((long) 1297840147 * 1000), ticket.getCreationDate());
         assertEquals(new Date((long) 1297840147 * 1000), ticket.getLastActivityDate());
@@ -73,92 +74,79 @@ public class TicketTests {
         assertEquals(16, ticket.getTemplateGroupId());
         assertEquals("default", ticket.getTemplateGroupName());
         assertEquals(Lists.newArrayList("test", "tag", "client"), ticket.getTags());
+        
     }
-
+    
     @Test
     public void testTicketUnmarshallGetsWatcher() throws Exception {
         // arrange
-        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticket.xml");
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
+        
         // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
+        
         // assert
         assertEquals(1, ticket.getWatchers().size());
         assertEquals(1, ticket.getWatchers().get(0).getStaffId());
-        assertEquals("Jane Doe", ticket.getWatchers().get(0).getStaffName());
+        assertEquals("Varun Shoor", ticket.getWatchers().get(0).getStaffName());
     }
-
+    
     @Test
     public void testTicketUnmarshallGetsWorkflow() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("/example_xml_ticket.xml")));
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
+        
         // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
+        
         // assert
         assertEquals(1, ticket.getWorkflows().size());
         assertEquals(1, ticket.getWorkflows().get(0).getId());
         assertEquals("Close Ticket", ticket.getWorkflows().get(0).getTitle());
     }
-
+    
     @Test
     public void testTicketUnmarshallGetsNotes() throws Exception {
         // arrange
-        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticket.xml");
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
+        
+        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
+        
         // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
+        
         // assert
         assertEquals(4, ticket.getNotes().size());
     }
-
-    @Test
-    public void testTicketUnmarshallGetsPosts() throws Exception {
-        // arrange
-        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_ticket.xml");
-
-        Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(Ticket.class);
-
-        // act
-        Ticket ticket = (Ticket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
-        // assert
-        assertEquals(1, ticket.getPosts().size());
-    }
-
+    
     @Test
     public void testTicketUnmarshallGetsWatchers() throws Exception {
         // arrange
         String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket2.xml");
-
+        
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
-
+        
         // act
         BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        
         // assert
         assertEquals(2, ticket.getWatchers().size());
     }
-
+    
     @Test
     public void testTicketUnmarshallGetsWorkflows() throws Exception {
         // arrange
         String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket2.xml");
-
+        
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
-
+        
         // act
         BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
-
+        
         // assert
         assertEquals(2, ticket.getWorkflows().size());
     }

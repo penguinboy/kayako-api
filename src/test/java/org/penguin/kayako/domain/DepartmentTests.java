@@ -1,17 +1,18 @@
-package org.penguin.kayako;
+package org.penguin.kayako.domain;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.io.StringReader;
+
+import javax.xml.bind.Unmarshaller;
 
 import org.junit.Test;
+import org.penguin.kayako.UnmarshallerFactory;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.KayakoAccessibility;
 import org.penguin.kayako.domain.KayakoApp;
 import org.penguin.kayako.util.ContentLoader;
-
-import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class DepartmentTests {
     
@@ -77,6 +78,6 @@ public class DepartmentTests {
         
         // assert
         assertEquals(3, department.getUserGroups().size());
-        assertTrue(1234 == department.getUserGroups().get(1));
+        assertEquals(Integer.valueOf(1234), department.getUserGroups().get(1));
     }
 }

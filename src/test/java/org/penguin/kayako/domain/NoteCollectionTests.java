@@ -1,6 +1,7 @@
-package org.penguin.kayako;
+package org.penguin.kayako.domain;
 
 import org.junit.Test;
+import org.penguin.kayako.UnmarshallerFactory;
 import org.penguin.kayako.domain.NoteCollection;
 import org.penguin.kayako.util.ContentLoader;
 
