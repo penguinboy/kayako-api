@@ -27,7 +27,7 @@ public class DepartmentConnector extends AbstractConnector {
      * @return The {@link Department} that represents the department you requested.
      * @throws ApiResponseException
      *             A wrapped exception of anything that went wrong when handling the response from kayako.
-     * @throws org.penguin.kayako.exception.ApiRequestException
+     * @throws ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public Department get(int id) throws ApiResponseException, ApiRequestException {

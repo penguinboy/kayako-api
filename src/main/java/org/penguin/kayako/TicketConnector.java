@@ -38,7 +38,7 @@ public class TicketConnector extends AbstractConnector {
      * @return An ordered list of tickets that match your given criteria
      * @throws ApiResponseException
      *             A wrapped exception of anything that went wrong when handling the response from kayako.
-     * @throws org.penguin.kayako.exception.ApiRequestException
+     * @throws ApiRequestException
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<BasicTicket> forDepartment(final int departmentId) throws ApiResponseException, ApiRequestException {

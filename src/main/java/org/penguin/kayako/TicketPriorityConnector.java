@@ -24,8 +24,8 @@ public class TicketPriorityConnector extends AbstractConnector {
      * Retrieve a list of all ticket priorities and their properties in the help desk.
      *
      * @return An collection of priorities known in system
-     * @throws org.penguin.kayako.exception.ApiResponseException A wrapped exception of anything that went wrong when handling the response from kayako
-     * @throws org.penguin.kayako.exception.ApiRequestException  A wrapped exception of anything that went wrong sending the request to kayako
+     * @throws ApiResponseException A wrapped exception of anything that went wrong when handling the response from kayako
+     * @throws ApiRequestException  A wrapped exception of anything that went wrong sending the request to kayako
      */
     public List<TicketPriority> list() throws ApiRequestException, ApiResponseException {
         return getApiRequest()
@@ -39,8 +39,8 @@ public class TicketPriorityConnector extends AbstractConnector {
      *
      * @param typeId The unique numeric identifier of the ticket priority
      * @return An collection of with requested priorities
-     * @throws org.penguin.kayako.exception.ApiResponseException A wrapped exception of anything that went wrong when handling the response from kayako
-     * @throws org.penguin.kayako.exception.ApiRequestException  A wrapped exception of anything that went wrong sending the request to kayako
+     * @throws ApiResponseException A wrapped exception of anything that went wrong when handling the response from kayako
+     * @throws ApiRequestException  A wrapped exception of anything that went wrong sending the request to kayako
      */
     public List<TicketPriority> forId(final int typeId) throws ApiRequestException, ApiResponseException {
         return getApiRequest()
