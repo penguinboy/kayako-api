@@ -73,7 +73,7 @@ In the future a maven repository will be added.
 | TicketNote | Yes | Yes | Yes |
 | TicketPost | - | - | - |
 | TicketPriority | Yes | NA | NA |
-| TicketSearch | - | - | - |
+| TicketSearch | Yes | NA | NA |
 | TicketStatus | Yes | NA | NA |
 | TicketTimeTrack | - | - | - |
 | TicketType | Yes | NA | NA |

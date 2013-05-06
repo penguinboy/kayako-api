@@ -104,6 +104,15 @@ public class KayakoClient {
         return new TicketPriorityConnector(this);
     }
 
+    /**
+     * Perform ticket search in Kayako.
+     *
+     * @return An instance of {@link TicketSearchConnector} that allows you to fetch ticket according to search query.
+     */
+    public TicketSearchConnector ticketSearch() {
+        return new TicketSearchConnector(this);
+    }
+
     protected String getApiKey() {
         return apiKey;
     }
