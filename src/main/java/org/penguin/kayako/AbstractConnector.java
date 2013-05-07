@@ -29,8 +29,24 @@ public abstract class AbstractConnector {
 
         protected void checkNotNull(final Object value) throws ApiRequestException {
             if (value == null) {
-                throw new ApiRequestException(new IllegalArgumentException("Argument can not be null"));
+                throwInvalidConfigurationException("Argument can not be null");
             }
+        }
+
+        protected void throwInvalidConfigurationException() throws ApiRequestException {
+            throwInvalidConfigurationException(null);
+        }
+
+        protected void throwInvalidConfigurationException(final String reason)  {
+            String message = "Invalid request configuration";
+            if (reason != null) {
+                message = message + ". " + reason;
+            }
+           throwInvalidConfigurationExceptionWithMessage(message);
+        }
+
+        private void throwInvalidConfigurationExceptionWithMessage(final String message) throws ApiRequestException {
+            throw new ApiRequestException(new IllegalStateException(message));
         }
     }
 }

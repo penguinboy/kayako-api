@@ -71,7 +71,7 @@ In the future a maven repository will be added.
 | TicketCount | - | - | - |
 | TicketCustomField | Yes | Yes | Yes |
 | TicketNote | Yes | Yes | Yes |
-| TicketPost | - | - | - |
+| TicketPost | Yes | Yes | Yes |
 | TicketPriority | Yes | NA | NA |
 | TicketSearch | Yes | NA | NA |
 | TicketStatus | Yes | NA | NA |

@@ -113,6 +113,15 @@ public class KayakoClient {
         return new TicketSearchConnector(this);
     }
 
+    /**
+     *  Interact with kayako ticket posts.
+     *
+     * @return An instance of {@link TicketPostConnector} that allows you to interact with ticket posts.
+     */
+    public TicketPostConnector posts() {
+        return new TicketPostConnector(this);
+    }
+
     protected String getApiKey() {
         return apiKey;
     }
