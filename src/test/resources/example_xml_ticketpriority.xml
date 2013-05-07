@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ticketpriority>
+    <id>1</id>
+    <title>Critical</title>
+    <displayorder>2</displayorder>
+    <frcolorcode>#ffffff</frcolorcode>
+    <bgcolorcode>#d6d6d6</bgcolorcode>
+    <displayicon>icon.png</displayicon>
+    <type>public</type>
+    <uservisibilitycustom>0</uservisibilitycustom>
+</ticketpriority>

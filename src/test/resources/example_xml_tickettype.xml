@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickettype>
+    <id>1</id>
+    <title>Feedback</title>
+    <displayorder>2</displayorder>
+    <departmentid>3</departmentid>
+    <displayicon>icon.png</displayicon>
+    <type>public</type>
+    <uservisibilitycustom>0</uservisibilitycustom>
+</tickettype>

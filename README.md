@@ -52,38 +52,38 @@ In the future a maven repository will be added.
 
 ## What's done
 
-API | Fetch | Edit | Delete
---- | ----- | ---- | ------
-Department | Yes  | - | -
-Ticket | Partial  | - | -
-CustomField | - | - | -
-KnowledgebaseArticle | - | - | -
-KnowledgebaseAttachment | - | - | -
-KnowledgebaseCategory | - | - | -
-KnowledgebaseComment | - | - | -
-NewsCategory | - | - | -
-NewsComment | - | - | -
-NewsItem | - | - | -
-NewsSubscriber | - | - | -
-Staff | - | - | -
-StaffGroup | - | - | -
-TicketAttachment | - | - | -
-TicketCount | - | - | -
-TicketCustomField | - | - | -
-TicketNote | - | - | -
-TicketPost | - | - | -
-TicketPriority | - | - | -
-TicketSearch | - | - | -
-TicketStatus | - | - | -
-TicketTimeTrack | - | - | -
-TicketType | - | - | -
-TroubleshooterAttachment | - | - | -
-TroubleshooterCategory | - | - | -
-TroubleshooterComment | - | - | -
-TroubleshooterStep | - | - | -
-User | - | - | -
-UserGroup | - | - | -
-UserOrganization | - | - | -
-UserSearch | - | - | -
+| API | Fetch | Edit | Delete |
+| --- | ----- | ---- | ------ |
+| Department | Yes | - | - |
+| Ticket | Yes | Yes | Yes |
+| CustomField | - | - | - |
+| KnowledgebaseArticle | - | - | -  |
+| KnowledgebaseAttachment | - | - | - |
+| KnowledgebaseCategory | - | - | - |
+| KnowledgebaseComment | - | - | - |
+| NewsCategory | - | - | - |
+| NewsComment | - | - | - |
+| NewsItem | - | - | - |
+| NewsSubscriber | - | - | - |
+| Staff | - | - | - |
+| StaffGroup | - | - | - |
+| TicketAttachment | Yes | Yes | Yes |
+| TicketCount | - | - | - |
+| TicketCustomField | Yes | Yes | Yes |
+| TicketNote | Yes | Yes | Yes |
+| TicketPost | Yes | Yes | Yes |
+| TicketPriority | Yes | NA | NA |
+| TicketSearch | Yes | NA | NA |
+| TicketStatus | Yes | NA | NA |
+| TicketTimeTrack | - | - | - |
+| TicketType | Yes | NA | NA |
+| TroubleshooterAttachment | - | - | - |
+| TroubleshooterCategory | - | - | - |
+| TroubleshooterComment | - | - | - |
+| TroubleshooterStep | - | - | - |
+| User | - | - | - |
+| UserGroup | - | - | - |
+| UserOrganization | - | - | - |
+| UserSearch | - | - | - |
 
 If you're a developer looking to integrate with Kayako, consider forking a extending this library. Refer to the [`DepartmentConnector`](https://github.com/penguinboy/kayako-api/blob/master/src/main/java/org/penguin/kayako/DepartmentConnector.java) as a reference. Pull requests will be accepted, provided they also include unit tests (see [existing unit tests](https://github.com/penguinboy/kayako-api/tree/master/src/test/java/org/penguin/kayako)) and fit with the current project structure.

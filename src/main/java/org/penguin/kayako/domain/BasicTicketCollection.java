@@ -1,17 +1,15 @@
 package org.penguin.kayako.domain;
 
-import java.util.List;
+import com.google.common.collect.Lists;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.google.common.collect.Lists;
+import java.util.List;
 
 /**
  * An object used to unmarshall api responses from kayako. Should never be returned to a user.
  * 
  * @author raynerw
- * 
  */
 @XmlRootElement(name = "tickets")
 public class BasicTicketCollection {

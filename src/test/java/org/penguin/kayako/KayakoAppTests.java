@@ -1,10 +1,11 @@
 package org.penguin.kayako;
 
-import junit.framework.Assert;
 
 import org.junit.Test;
 import org.penguin.kayako.domain.KayakoApp;
 import org.penguin.kayako.domain.KayakoApp.KayakoAppAdapter;
+
+import static org.junit.Assert.assertEquals;
 
 public class KayakoAppTests {
 
@@ -18,7 +19,7 @@ public class KayakoAppTests {
         String v = adapter.marshal(app);
 
         // assert
-        Assert.assertEquals("tickets", v);
+        assertEquals("tickets", v);
     }
 
     @Test
@@ -31,7 +32,7 @@ public class KayakoAppTests {
         String v = adapter.marshal(app);
 
         // assert
-        Assert.assertEquals("livechat", v);
+        assertEquals("livechat", v);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class KayakoAppTests {
         KayakoApp app = adapter.unmarshal(v);
 
         // assert
-        Assert.assertEquals(KayakoApp.TICKETS, app);
+        assertEquals(KayakoApp.TICKETS, app);
     }
 
     @Test
@@ -57,6 +58,6 @@ public class KayakoAppTests {
         KayakoApp app = adapter.unmarshal(v);
 
         // assert
-        Assert.assertEquals(KayakoApp.LIVECHAT, app);
+        assertEquals(KayakoApp.LIVECHAT, app);
     }
 }

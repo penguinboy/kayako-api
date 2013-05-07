@@ -1,8 +1,9 @@
 package org.penguin.kayako;
 
-import junit.framework.Assert;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class UriBuilderTests {
     
@@ -16,7 +17,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com/test", result);
+        assertEquals("http://my.kayako.com/test", result);
     }
     
     @Test
@@ -29,7 +30,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com/test/this/function", result);
+        assertEquals("http://my.kayako.com/test/this/function", result);
     }
     
     @Test
@@ -42,7 +43,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com?/test", result);
+        assertEquals("http://my.kayako.com?/test", result);
     }
     
     @Test
@@ -55,7 +56,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com?/test/multiple", result);
+        assertEquals("http://my.kayako.com?/test/multiple", result);
     }
     
     @Test
@@ -68,7 +69,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com/api/test?/base/department", result);
+        assertEquals("http://my.kayako.com/api/test?/base/department", result);
     }
     
     @Test
@@ -81,7 +82,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com?somekey=lolvalue", result);
+        assertEquals("http://my.kayako.com?somekey=lolvalue", result);
     }
     
     @Test
@@ -94,7 +95,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com?somekey=lolvalue&anotherkey=value", result);
+        assertEquals("http://my.kayako.com?somekey=lolvalue&anotherkey=value", result);
     }
     
     @Test
@@ -107,7 +108,7 @@ public class UriBuilderTests {
         String result = builder.toURL().toString();
         
         // assert
-        Assert.assertEquals("http://my.kayako.com?/query/path&somekey=lolvalue&anotherkey=value", result);
+        assertEquals("http://my.kayako.com?/query/path&somekey=lolvalue&anotherkey=value", result);
     }
     
 }

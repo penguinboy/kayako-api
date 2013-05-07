@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<posts>
+    <post>
+        <id>2</id>
+        <ticketpostid>2</ticketpostid>
+        <ticketid>1</ticketid>
+        <dateline>1297840147</dateline>
+        <userid>1</userid>
+        <fullname>John Doe</fullname>
+        <email>john.doe@kayako.com</email>
+        <emailto />
+        <ipaddress>127.0.0.1</ipaddress>
+        <hasattachments>0</hasattachments>
+        <creator>2</creator>
+        <isthirdparty>0</isthirdparty>
+        <ishtml>0</ishtml>
+        <isemailed>0</isemailed>
+        <staffid>0</staffid>
+        <issurveycomment>0</issurveycomment>
+        <contents><![CDATA[I am just testing]]></contents>
+        <isprivate>0</isprivate>
+    </post>
+    <post>
+        <id>4</id>
+        <ticketpostid>4</ticketpostid>
+        <ticketid>1</ticketid>
+        <dateline>1297874640</dateline>
+        <userid>0</userid>
+        <fullname>John Doe</fullname>
+        <email>john.doe@kayako.com</email>
+        <emailto />
+        <ipaddress>127.0.0.1</ipaddress>
+        <hasattachments>0</hasattachments>
+        <creator>1</creator>
+        <isthirdparty>0</isthirdparty>
+        <ishtml>0</ishtml>
+        <isemailed>0</isemailed>
+        <staffid>1</staffid>
+        <issurveycomment>0</issurveycomment>
+        <contents><![CDATA[Test reply]]></contents>
+        <isprivate>1</isprivate>
+    </post>
+</posts>

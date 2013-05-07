@@ -1,10 +1,11 @@
 package org.penguin.kayako;
 
-import junit.framework.Assert;
 
 import org.junit.Test;
 import org.penguin.kayako.domain.KayakoAccessibility;
 import org.penguin.kayako.domain.KayakoAccessibility.KayakoAccessibilityAdapter;
+
+import static org.junit.Assert.assertEquals;
 
 public class KayakoAccessibilityTests {
 
@@ -18,7 +19,7 @@ public class KayakoAccessibilityTests {
         String v = adapter.marshal(app);
 
         // assert
-        Assert.assertEquals("private", v);
+        assertEquals("private", v);
     }
 
     @Test
@@ -31,7 +32,7 @@ public class KayakoAccessibilityTests {
         String v = adapter.marshal(app);
 
         // assert
-        Assert.assertEquals("public", v);
+        assertEquals("public", v);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class KayakoAccessibilityTests {
         KayakoAccessibility accessibility = adapter.unmarshal(v);
 
         // assert
-        Assert.assertEquals(KayakoAccessibility.PRIVATE, accessibility);
+        assertEquals(KayakoAccessibility.PRIVATE, accessibility);
     }
 
     @Test
@@ -57,6 +58,6 @@ public class KayakoAccessibilityTests {
         KayakoAccessibility accessibility = adapter.unmarshal(v);
 
         // assert
-        Assert.assertEquals(KayakoAccessibility.PUBLIC, accessibility);
+        assertEquals(KayakoAccessibility.PUBLIC, accessibility);
     }
 }

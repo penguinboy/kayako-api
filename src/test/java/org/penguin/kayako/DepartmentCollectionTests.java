@@ -1,21 +1,19 @@
 package org.penguin.kayako;
 
-import java.io.InputStreamReader;
-import java.io.StringReader;
-
-import javax.xml.bind.Unmarshaller;
-
-import org.junit.Assert;
 import org.junit.Test;
 import org.penguin.kayako.domain.DepartmentCollection;
+import org.penguin.kayako.util.ContentLoader;
 
-import com.google.common.io.CharStreams;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
+
+import static org.junit.Assert.assertNotNull;
 
 public class DepartmentCollectionTests {
     @Test
     public void testXmlParsingDepartments() throws Exception {
         // arrange
-        String departmentsXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_departments.xml")));
+        String departmentsXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_departments.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(DepartmentCollection.class);
         
@@ -23,6 +21,6 @@ public class DepartmentCollectionTests {
         DepartmentCollection departments = (DepartmentCollection) unmarshaller.unmarshal(new StringReader(departmentsXml));
         
         // assert
-        Assert.assertNotNull(departments);
+        assertNotNull(departments);
     }
 }

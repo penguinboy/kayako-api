@@ -1,11 +1,11 @@
 package org.penguin.kayako;
 
-import java.util.List;
-
-import org.penguin.kayako.ApiRequest.ApiRequestException;
-import org.penguin.kayako.ApiResponse.ApiResponseException;
 import org.penguin.kayako.domain.Department;
 import org.penguin.kayako.domain.DepartmentCollection;
+import org.penguin.kayako.exception.ApiRequestException;
+import org.penguin.kayako.exception.ApiResponseException;
+
+import java.util.List;
 
 /**
  * Wrapper for any API calls specific to departments
@@ -13,13 +13,12 @@ import org.penguin.kayako.domain.DepartmentCollection;
  * @author raynerw
  * 
  */
-public class DepartmentConnector {
-    private final KayakoClient client;
-    
-    protected DepartmentConnector(KayakoClient client) {
-        this.client = client;
+public class DepartmentConnector extends AbstractConnector {
+
+    protected DepartmentConnector(final KayakoClient client) {
+        super(client);
     }
-    
+
     /**
      * Get the details of a department
      * 
@@ -32,8 +31,7 @@ public class DepartmentConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public Department get(int id) throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
-                .withPath("Base").withPath("Department")
+        return getApiRequest()
                 .withPath(String.valueOf(id))
                 .get().as(DepartmentCollection.class).getDepartments().get(0);
     }
@@ -48,8 +46,15 @@ public class DepartmentConnector {
      *             A wrapped exception of anything that went wrong sending the request to kayako.
      */
     public List<Department> list() throws ApiResponseException, ApiRequestException {
-        return new ApiRequest(client)
-                .withPath("Base").withPath("Department")
+        return getApiRequest()
                 .get().as(DepartmentCollection.class).getDepartments();
+    }
+
+    @Override
+    protected ApiRequest getApiRequest() {
+        ApiRequest request = super.getApiRequest();
+        return request
+                .withPath("Base")
+                .withPath("Department");
     }
 }

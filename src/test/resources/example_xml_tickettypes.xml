@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickettypes>
+    <tickettype>
+        <id>1</id>
+        <title>Feedback</title>
+        <displayorder>2</displayorder>
+        <departmentid>3</departmentid>
+        <displayicon>icon.png</displayicon>
+        <type>public</type>
+        <uservisibilitycustom>0</uservisibilitycustom>
+    </tickettype>
+    <tickettype>
+        <id>1</id>
+        <title>Feedback</title>
+        <displayorder>2</displayorder>
+        <departmentid>3</departmentid>
+        <displayicon>icon.png</displayicon>
+        <type>private</type>
+        <uservisibilitycustom>1</uservisibilitycustom>
+        <usergroupid>2</usergroupid>
+    </tickettype>
+</tickettypes>

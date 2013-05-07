@@ -1,27 +1,23 @@
 package org.penguin.kayako;
 
-import static junit.framework.Assert.assertEquals;
+import com.google.common.collect.Lists;
+import org.junit.Test;
+import org.penguin.kayako.domain.BasicTicket;
+import org.penguin.kayako.util.ContentLoader;
 
-import java.io.InputStreamReader;
+import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.util.Date;
 
-import javax.xml.bind.Unmarshaller;
-
-import junit.framework.Assert;
-
-import org.junit.Test;
-import org.penguin.kayako.domain.BasicTicket;
-
-import com.google.common.collect.Lists;
-import com.google.common.io.CharStreams;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BasicTicketTests {
     
     @Test
     public void testTicketUnmarshalling() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -29,13 +25,13 @@ public class BasicTicketTests {
         BasicTicket ticket = (BasicTicket) unmarshaller.unmarshal(new StringReader(ticketXml));
         
         // assert
-        Assert.assertNotNull(ticket);
+        assertNotNull(ticket);
     }
-    
+
     @Test
     public void testTicketContentCorrect() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -81,7 +77,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWatcher() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -97,7 +93,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWorkflow() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -113,7 +109,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsNotes() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -127,7 +123,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWatchers() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket2.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket2.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
@@ -141,7 +137,7 @@ public class BasicTicketTests {
     @Test
     public void testTicketUnmarshallGetsWorkflows() throws Exception {
         // arrange
-        String ticketXml = CharStreams.toString(new InputStreamReader(this.getClass().getResourceAsStream("example_xml_basicticket2.xml")));
+        String ticketXml = ContentLoader.loadXMLFromFileInClassPath("/example_xml_basicticket2.xml");
         
         Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(BasicTicket.class);
         
