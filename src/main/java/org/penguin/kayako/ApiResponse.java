@@ -1,11 +1,13 @@
 package org.penguin.kayako;
 
-import com.google.common.collect.Lists;
-import org.penguin.kayako.exception.ApiResponseException;
+import java.io.StringReader;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
+
+import org.penguin.kayako.exception.ApiResponseException;
+
+import com.google.common.base.Strings;
 
 public class ApiResponse {
     private final String responseContent;
@@ -19,10 +21,10 @@ public class ApiResponse {
         
         try {
             Unmarshaller unmarshaller = UnmarshallerFactory.getMapper(returnType);
-            return (E) unmarshaller.unmarshal(new StringReader(responseContent));
+            return (E) unmarshaller.unmarshal(new StringReader(Strings.nullToEmpty(responseContent)));
         } catch (JAXBException e) {
             throw new ApiResponseException("An exception occurred unmarshalling return content", e);
         }
     }
-
+    
 }

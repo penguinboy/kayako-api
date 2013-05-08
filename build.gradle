@@ -10,8 +10,12 @@ repositories {
 }
 
 dependencies {
+    def powermockVersion = '1.5';
+    
     testCompile "junit:junit:4.8.2",
-                "org.mockito:mockito-all:1.8.5"
+                "org.mockito:mockito-all:1.8.5",
+                "org.powermock:powermock-module-junit4:${powermockVersion}",
+                "org.powermock:powermock-api-mockito:${powermockVersion}"
     
     compile 'com.google.guava:guava:r09',
             'joda-time:joda-time:2.0',
