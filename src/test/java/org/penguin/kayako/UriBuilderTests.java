@@ -110,5 +110,18 @@ public class UriBuilderTests {
         // assert
         assertEquals("http://my.kayako.com?/query/path&somekey=lolvalue&anotherkey=value", result);
     }
+
+    @Test
+    public void testCustomSchemeAddedCorrectly() throws Exception {
+        // arrange
+        UriBuilder builder = new UriBuilder("https", "my.kayako.com");
+
+        // act
+        builder = builder.path("test");
+        String result = builder.toURL().toString();
+
+        // assert
+        assertEquals("https://my.kayako.com/test", result);
+    }
     
 }
