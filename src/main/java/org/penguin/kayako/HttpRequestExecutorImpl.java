@@ -1,6 +1,7 @@
 package org.penguin.kayako;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -21,7 +22,7 @@ public class HttpRequestExecutorImpl implements HttpRequestExecutor {
         if (HttpStatus.SC_OK != status.getStatusCode()) {
             throw new ApiRequestException(new IOException("Request failed with status code: " + status.getStatusCode()));
         }
-        return EntityUtils.toString(response.getEntity());
+        return EntityUtils.toString(response.getEntity(), Charset.forName("UTF-8"));
     }
     
 }

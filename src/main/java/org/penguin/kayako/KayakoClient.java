@@ -33,6 +33,30 @@ public class KayakoClient {
         this.baseURI = new UriBuilder(baseURI).path("api").path("index.php");
         this.requestExecutor = new HttpRequestExecutorImpl();
     }
+
+    /**
+     * Initialize a new instance of the kayako client with your kayako address and security details.
+     *
+     * @param apiKey
+     *            The api key listed in your Kayako admin interface.
+     * @param apiSecret
+     *            The api secret listed in your Kayako admin interface.
+     * @param scheme
+     *            The scheme for base URI (HTTP or HTTPS).
+     * @param host
+     *            The base address for your kayako installation. This should not include a scheme or a port. This
+     *            wrapper assumes your api module is installed in the default top-level directory of your kayako
+     *            installation (/api).
+     *
+     *            Example address: my.kayakoinstallation.com
+     */
+    public KayakoClient(final String apiKey, final String apiSecret,
+                        final String scheme, final String host) {
+        this.apiKey = apiKey;
+        this.apiSecret = apiSecret;
+        this.baseURI = new UriBuilder(scheme, host).path("api").path("index.php");
+        this.requestExecutor = new HttpRequestExecutorImpl();
+    }
     
     /**
      * Interact with kayako departments
